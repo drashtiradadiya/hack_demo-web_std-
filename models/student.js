@@ -45,6 +45,6 @@ const studentSchema =new mongoose.Schema({
         return next(error);
     }
 });*/
-const Student_signup = mongoose.model('Student_info', studentSchema);
+const Student_signup = mongoose.model('student_info', studentSchema);
 
 module.exports = Student_signup;

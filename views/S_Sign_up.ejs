@@ -18,20 +18,58 @@
     <link rel="stylesheet" href="/css/SF_Sign_up.css">
     <title>Sign Up | Students</title>
     <script>
-        function validateForm() {
-            const first_Name=document.getElementById('first_Name').value;
-            const  last_Name=document.getElementById('last_Name').value;
-            const   email=document.getElementById('email').value;
-            const enrollment_No = document.getElementById('enrollment_No').value;
-            const password = document.getElementById('password').value;
-            // Add validation for other fields...
+ function validateForm() {
+    const first_Name = document.getElementById('first_Name').value;
+    const last_Name = document.getElementById('last_Name').value;
+    const email = document.getElementById('email').value;
+    const enrollment_No = document.getElementById('enrollment_No').value;
+    const password = document.getElementById('password').value;
 
-            if (!password || !enrollmentNo) {
-                alert('Please fill in all required fields.');
-                return false;
-            }
-            return true;
+    // Validate other fields if needed...
+
+    if (!first_Name || !last_Name || !email || !enrollment_No || !password) {
+        alert('Please fill in all required fields.');
+        return false;
+    }
+
+    // Prepare the data object
+    const formData = {
+        first_Name,
+        last_Name,
+        email,
+        enrollment_No,
+        password
+        // Add other fields as needed...
+    };
+
+    // Send the data to the server
+    fetch('http://localhost:8001/api/sign', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+        window.location.href = '/api/index';
+        // Handle successful response from the server
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        // Handle errors
+    });
+
+
+    return true; // Assuming the form submission will proceed asynchronously
+}
+
     </script>
 </head>
 
@@ -43,7 +81,7 @@
                     Sign Up for Students
                 </h3>
             </div>
-            <form action="/S_Sign_up" method="post" onsubmit="return validateForm()">
+            <form action="localhost:8001/api/sign" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 mt-4">
                     <label for="first_Name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="first_Name" placeholder="First Name" required>

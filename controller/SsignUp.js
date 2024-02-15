@@ -1,15 +1,29 @@
 const Student_signup = require("../models/student.js");
 // ../models/student.js
-async function handlerStudentpage(req, res) {
-  res.render("S_Sign_up");
+ function handlerStudentpage(req, res) {
+   return res.render("S_Sign_up");
 }
 
-async function handlerStudentDataFromSignUp(req, res) {
-  const newUserData = await req.body;
-  Student_signup.insertMany(newUserData);
-  return res.redirect("index");
+function handleIndex(req,res) {
+  return res.render('index')
+}
+const handlerStudentDataFromSignUp = async(req, res) => {
+  const {first_Name, last_Name, password, email, enrollment_No} = await req.body;
+  const ip = req.ip
+  console.log(first_Name);
+  await Student_signup.create({
+    first_Name, 
+    last_Name, 
+    password, 
+    enrollment_No,
+    email, 
+   IpAddress: ip
+
+  });
+  return res.status(200).json({msg: 'OK'});
 }
 module.exports = {
+  handleIndex,
   handlerStudentDataFromSignUp,
   handlerStudentpage,
 };

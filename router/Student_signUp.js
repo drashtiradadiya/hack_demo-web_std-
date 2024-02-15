@@ -1,7 +1,8 @@
 const express= require('express');
 const router=express.Router();
-const {handlerStudentDataFromSignUp,handlerStudentpage}=require('../controller/SsignUp');
+const { handlerStudentDataFromSignUp, handlerStudentpage, handleIndex}=require('../controller/SsignUp');
 router.get('/sign',handlerStudentpage)
-router.post('/sign',handlerStudentDataFromSignUp);
+router.get('/index', handleIndex)
+router.post('/sign', handlerStudentDataFromSignUp);
 
 module.exports=router;
