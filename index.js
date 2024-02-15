@@ -10,12 +10,12 @@ const path = require("path");
 
 //Connection
 connectMongodb("mongodb://localhost:27017/StudentPannel");
-
-//app configuration
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname,'public')));
 //view engine setup
-app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("views", path.resolve("./views"));
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.urlencoded({ extended: true }));
 
