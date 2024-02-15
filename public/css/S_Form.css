@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#photo {
+    margin-top: 8%;
+}
+
+#profilePhoto {
+    border-radius: 50%;
+    width: 80px;
+    height: 100px;
+}
+
+.education_btn,
+.experience_btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+#plus_icon i {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.submit {
+    height: 2.5rem;
+    text-align: center;
+}
+
+#tool,
+#projectTool {
+    width: 400px;
+    height: auto;
+}
