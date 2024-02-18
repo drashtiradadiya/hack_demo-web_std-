@@ -13,7 +13,7 @@ body {
 }
 
 .main {
-    height: 48rem;
+    height: 51rem;
     width: 35rem;
     background-color: rgba(128, 128, 128, 0.432);
     border: 1px solid lightgray;
@@ -44,4 +44,12 @@ body {
 .button:hover {
     background-color: #0F1035;
     color: rgb(255, 255, 255);
+}
+
+.signupLink {
+    color: #365486;
+}
+
+.signupLink:hover {
+    color: #2576c7;
 }

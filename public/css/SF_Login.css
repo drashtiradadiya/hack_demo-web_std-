@@ -13,7 +13,7 @@ body {
 }
 
 .main {
-    height: 450px;
+    height: 500px;
     width: 400px;
     background-color: rgba(128, 128, 128, 0.432);
     border: 1px solid lightgray;
@@ -21,6 +21,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 50px;
 }
 
 .title {
@@ -44,4 +45,8 @@ body {
 .button:hover {
     background-color: #0F1035;
     color: rgb(255, 255, 255);
+}
+
+.loginLink {
+    color: #365486;
 }

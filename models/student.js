@@ -1,35 +1,36 @@
 const mongoose = require("mongoose");
 // const bcrypt = require('bcrypt');
 
-const studentSchema =new mongoose.Schema({
+const studentSchema = new mongoose.Schema(
+  {
     first_Name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     last_Name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     enrollment_No: {
-        type: Number,
-        required: true,
-        unique: true
+      type: Number,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    IpAddress:{
-        type:String,
-        required:true
-    }
-},
-    { timestamps: true }
+    IpAddress: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
 );
 // Hash the password before saving the user
 /*studentSchema.pre('save', async function (next) {
@@ -45,6 +46,6 @@ const studentSchema =new mongoose.Schema({
         return next(error);
     }
 });*/
-const Student_signup = mongoose.model('student_info', studentSchema);
+const Student_signup = mongoose.model("student_info", studentSchema);
 
 module.exports = Student_signup;

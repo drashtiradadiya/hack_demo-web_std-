@@ -17,46 +17,51 @@
     <link rel="stylesheet" href="/css/SF_Login.css">
     <script>
         function validateForm() {
-           const email = document.getElementById('LoginEmail').value;
-           const enrollment_No = document.getElementById('enrollNo').value;
-           const password = document.getElementById('password').value;
-       
-           // Validate other fields if needed...
-       
-           if ( !email || !enrollment_No || !password) {
-               alert('Please fill in all required fields.');
-               return false;
-           }
-       
-           // Send the data to the server
-           fetch('http://localhost:8001/api/login', {
-               method: 'POST',
-               headers: {
-                   'Content-Type': 'application/json'
-               },
-               body: JSON.stringify( {email,enrollment_No,password})
-           })
-           .then(response => {
-               if (!response.ok) {
-                   throw new Error('Network response was not ok');
-               }
-               return response.json();
-           })
-           .then(data => {
-               console.log('Server response:', data);
-               window.location.href = '/api/index';
-               // Handle successful response from the server
-           })
-           .catch(error => {
-               console.error('There was a problem with the fetch operation:', error);
-               // Handle errors
-           });
-       
-       
-           return true; // Assuming the form submission will proceed asynchronously
-       }
-       
-           </script>
+            const email = document.getElementById('LoginEmail').value;
+            const enrollment_No = document.getElementById('enrollNo').value;
+            const password = document.getElementById('password').value;
+
+            // Validate other fields if needed...
+
+            if (!email || !enrollment_No || !password) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            // Send the data to the server
+            if (enrollment_No.toString().length === 11 || enrollment_No.toString().length === 9) {
+                fetch('http://localhost:8001/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, enrollment_No, password })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Server response:', data);
+                        window.location.href = '/api/index';
+                        // Handle successful response from the server
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                        // Handle errors
+                    });
+            }
+            else {
+                alert('Please Enter Valid Enrollment No.');
+                return false;
+            }
+
+            return true; // Assuming the form submission will proceed asynchronously
+        }
+
+    </script>
 </head>
 
 <body>
@@ -73,17 +78,25 @@
                 </div>
                 <div class="mb-3">
                     <label for="enrollNo" class="form-label">Enrollment Number</label>
-                    <input type="tel" maxlength="11" class="form-control" id="enrollNo" value="" required />
+                    <input type="tel" maxlength="11" class="form-control" id="enrollNo" value=""
+                        placeholder="Enter Enrollment No" required />
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="" id="password" placeholder="" required />
+                    <input type="password" class="form-control" name="" id="password" placeholder="Enter Password"
+                        required />
                 </div>
                 <center>
                     <button class="btn button w-100" type="submit">Login</button>
                 </center>
             </form>
+            <div class="registration mt-3">
+                Don't have any account ?
+                <a class="loginLink" href="/api/sign">
+                    Create your account
+                </a>
+            </div>
         </div>
     </div>
     <!-- <script src="js/SF_Sign_up.js"></script> -->
