@@ -10,8 +10,7 @@
     height: 100px;
 }
 
-.education_btn,
-.experience_btn {
+.save_btn {
     display: flex;
     justify-content: space-between;
 }
