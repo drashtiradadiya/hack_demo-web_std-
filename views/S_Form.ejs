@@ -42,7 +42,7 @@
                 alert('Please fill in all required fields.');
                 return false;
             }
-            
+
             // Prepare the data object
             const formData = {
                 first_Name,
@@ -58,15 +58,15 @@
                 // Add other fields as needed...
             };
 
-             // Send the data to the server
-            function addinfor(){
-                    fetch('http://localhost:8001/api/S_Form', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    })
+            // Send the data to the server
+            function addinfor() {
+                fetch('http://localhost:8001/api/S_Form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -84,7 +84,7 @@
                     });
             }
             return true; // Assuming the form submission will proceed asynchronously
-            
+
         }
     </script>
 </head>
@@ -123,7 +123,8 @@
         </div>
 
         <!-- About Section -->
-        <form action="localhost:8001/api/S_Form" method="post" onsubmit="return validateForm()" class="row g-3" id="about" >
+        <form action="localhost:8001/api/S_Form" method="post" onsubmit="return validateForm()" class="row g-3"
+            id="about">
             <fieldset class="border rounded-3 p-3">
                 <legend class="float-none w-auto px-3">About:</legend>
                 <label for="name" class="form-label">Name *</label>
@@ -179,9 +180,7 @@
                     <label for="experience" class="form-label">Experience (in years)</label>
                     <input type="number" maxlength="2" class="form-control" id="experience">
                 </div>
-                <!-- <div class="col-12 mb-2">
-                    <button type="submit" class="btn btn-primary mt-3">Save Details</button>
-                </div> -->
+            
             </fieldset>
         </form>
         <!-- About Section Over -->
@@ -239,179 +238,159 @@
                         </div>
                     </fieldset>
 
-
-<<<<<<< HEAD
-                    <!-- Education section Over -->
                 </div>
-              
-            </fieldset>
-        </form>
-=======
-                <!-- Education section Over -->
-            </div>
-            <!-- save button-->
-            <!-- <div class="col-12 mb-2 education_btn">
-                <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                <button class=" btn text-primary mt-4" id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-            </div> -->
-        </fieldset>
->>>>>>> b16a6b06a2286bf669ac52152419dd76bf65a160
 
 
 
 
-        <!-- Experience Section -->
-        <form id="ex">
-            <fieldset class="border rounded-3 p-3 h-auto">
-                <legend class="float-none w-auto px-3">Job / Internship:</legend>
-                <div class="mb-3">
-                    <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <!-- <div class="container experience_container row"> -->
-                <div class="col-12 mb-2"> <label for="companyName" class="form-label">Comapany Name</label>
-                    <input type="text" class="form-control" placeholder="--- Enter Company Name ---" id="companyName">
-                </div>
-                <div class="row">
-                    <div class="col-6 mb-2">
-                        <label for="experienceCompany" class="form-label">Experience (in year)</label>
-                        <input type="number" maxlength="2" class="form-control" placeholder="Enter Experience"
-                            id="experienceCompany">
+
+
+                <!-- Experience Section -->
+                <form id="ex">
+                    <fieldset class="border rounded-3 p-3 h-auto">
+                        <legend class="float-none w-auto px-3">Job / Internship:</legend>
+                        <div class="mb-3">
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <!-- <div class="container experience_container row"> -->
+                        <div class="col-12 mb-2"> <label for="companyName" class="form-label">Comapany Name</label>
+                            <input type="text" class="form-control" placeholder="--- Enter Company Name ---"
+                                id="companyName">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <label for="experienceCompany" class="form-label">Experience (in year)</label>
+                                <input type="number" maxlength="2" class="form-control" placeholder="Enter Experience"
+                                    id="experienceCompany">
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label for="jobType" class="form-label">Job Type</label>
+                                <input type="text" class="form-control" placeholder="Enter Job-Type (Ex- Web Developer)"
+                                    id="jobType">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" maxlength="4" placeholder="Enter Start Date"
+                                    id="startDate">
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" maxlength="4" placeholder="Enter End Date"
+                                    id="endDate">
+                            </div>
+                        </div>
+
+
+
+                    </fieldset>
+                </form>
+                <!-- Experience section Over -->
+
+
+
+
+                <!-- Skill Section -->
+                <form action="http://httpbin.org/post" method="post">
+                    <fieldset class="border rounded-3 p-3 h-auto" id="skill">
+                        <legend class="float-none w-auto px-3">Skills:</legend>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <label for="tool" class="form-label">Tools / Technology *</label><br>
+                                <select data-placeholder="Select Tools / Technologies" multiple class="chosen-select"
+                                    name="test" id="tool" required>
+                                    <option>C++</option>
+                                    <option>Java</option>
+                                    <option>Python</option>
+                                    <option>HTML</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
+                                <select data-placeholder="Select Interpersonal Skill" multiple class="chosen-select"
+                                    name="test" id="tool" required>
+                                    <option>Communication</option>
+                                    <option>Presentation</option>
+                                    <option>Management</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                </form>
+                <!-- Skill section Over -->
+
+
+
+                <!-- Project Section -->
+
+                <form id="project">
+                    <fieldset class="border rounded-3 p-3 h-auto">
+                        <legend class="float-none w-auto px-3">Project:</legend>
+                        <div class="mb-3">
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label for="projectName" class="form-label">Project Name *</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Project Name"
+                                id="projectName">
+                        </div>
+
+                        <div class="col-12 mb-2">
+                            <label for="projectDes" class="form-label">Project Description *</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Project Description"
+                                id="projectDes">
+                        </div>
+
+                        <div class="col-12 mb-2">
+                            <label for="projectTool" class="form-label">Tools / Technology *</label><br>
+                            <select data-placeholder="Select Tools / Technologies" multiple class="chosen-select"
+                                name="test" id="projectTool" required>
+                                <option>C++</option>
+                                <option>Java</option>
+                                <option>Python</option>
+                                <option>HTML</option>
+                            </select>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                <!-- Project Section Over -->
+
+                <!-- Achievement Section -->
+                <!-- <form> -->
+                <fieldset class="border rounded-3 p-3 h-auto" id="acheivements">
+                    <legend class="float-none w-auto px-3">Achievements:</legend>
+                    <div class="mb-3">
+                        <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="col-6 mb-2">
-                        <label for="jobType" class="form-label">Job Type</label>
-                        <input type="text" class="form-control" placeholder="Enter Job-Type (Ex- Web Developer)"
-                            id="jobType">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <label for="certificate" class="form-label">Upload Your Certificate</label>
+                            <input type="file" class="form-control" id="certificate">
+                        </div>
+                        <div class="col-12 mb-2">
+                            <label for="domain" class="form-label">Domain</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Domain" id="domain">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 mb-2">
-                        <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" maxlength="4" placeholder="Enter Start Date"
-                            id="startDate">
-                    </div>
-                    <div class="col-6 mb-2">
-                        <label for="endDate" class="form-label">End Date</label>
-                        <input type="date" class="form-control" maxlength="4" placeholder="Enter End Date" id="endDate">
-                    </div>
-                </div>
+
+                </fieldset>
+                <!-- </form> -->
+
+                <!-- Achievement section Over -->
 
                 <!-- save button-->
-                <!-- <div class="col-12 mb-2 experience_btn">
+                <div class="col-12 mb-2 save_btn">
                     <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                    <button class="btn text-primary mt-4" id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-                </div> -->
-            </fieldset>
-        </form>
-        <!-- Experience section Over -->
-
-
-
-
-        <!-- Skill Section -->
-        <form action="http://httpbin.org/post" method="post">
-            <fieldset class="border rounded-3 p-3 h-auto" id="skill">
-                <legend class="float-none w-auto px-3">Skills:</legend>
-                <div class="row">
-                    <div class="col-6 mb-2">
-                        <label for="tool" class="form-label">Tools / Technology *</label><br>
-                        <select data-placeholder="Select Tools / Technologies" multiple class="chosen-select"
-                            name="test" id="tool" required>
-                            <option>C++</option>
-                            <option>Java</option>
-                            <option>Python</option>
-                            <option>HTML</option>
-                        </select>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
-                        <select data-placeholder="Select Interpersonal Skill" multiple class="chosen-select" name="test"
-                            id="tool" required>
-                            <option>Communication</option>
-                            <option>Presentation</option>
-                            <option>Management</option>
-                        </select>
-                    </div>
+                    <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <!-- save button-->
-                <!-- <div class="col-12 mb-2 education_btn">
-                    <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                </div> -->
-            </fieldset>
-        </form>
-        <!-- Skill section Over -->
-
-
-
-        <!-- Project Section -->
-
-        <form id="project">
-            <fieldset class="border rounded-3 p-3 h-auto">
-                <legend class="float-none w-auto px-3">Project:</legend>
-                <div class="mb-3">
-                    <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="col-12 mb-2">
-                    <label for="projectName" class="form-label">Project Name *</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Project Name" id="projectName">
-                </div>
-
-                <div class="col-12 mb-2">
-                    <label for="projectDes" class="form-label">Project Description *</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Project Description"
-                        id="projectDes">
-                </div>
-
-                <div class="col-12 mb-2">
-                    <label for="projectTool" class="form-label">Tools / Technology *</label><br>
-                    <select data-placeholder="Select Tools / Technologies" multiple class="chosen-select" name="test"
-                        id="projectTool" required>
-                        <option>C++</option>
-                        <option>Java</option>
-                        <option>Python</option>
-                        <option>HTML</option>
-                    </select>
-                </div>
-                <!-- save button-->
-                <!-- <div class="col-12 mb-2 experience_btn">
-                    <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                    <button class="btn text-primary mt-4" id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-                </div> -->
-            </fieldset>
-        </form>
-
-        <!-- Project Section Over -->
-
-        <!-- Achievement Section -->
-        <!-- <form> -->
-        <fieldset class="border rounded-3 p-3 h-auto" id="acheivements">
-            <legend class="float-none w-auto px-3">Achievements:</legend>
-            <div class="mb-3">
-                <button type="button" class="btn-close float-end" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <label for="certificate" class="form-label">Upload Your Certificate</label>
-                    <input type="file" class="form-control" id="certificate">
-                </div>
-                <div class="col-12 mb-2">
-                    <label for="domain" class="form-label">Domain</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Domain" id="domain">
-                </div>
-            </div>
-
-        </fieldset>
-        <!-- </form> -->
-
-        <!-- Achievement section Over -->
-
-        <!-- save button-->
-        <div class="col-12 mb-2 save_btn">
-            <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-            <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-        </div>
     </div>
     <!-- <script src="/js/charts/S_Form.js"></script> -->
     <script>   var body = document.body;</script>
