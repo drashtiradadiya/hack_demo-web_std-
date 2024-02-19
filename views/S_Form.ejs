@@ -32,7 +32,27 @@
             const city = document.getElementById('city').value;
             const state = document.getElementById('state').value;
             const zip = document.getElementById('zip').value;
-            const experience = document.getElementById('experience').value;
+            const degree_Name = document.getElementById('degreeName').value;
+            const degreeStatus = document.getElementById('degreeStatus').value;
+            const university = document.getElementById('university').value;
+            const Completion_year = document.getElementById('year').value;
+            const cgpa = document.getElementById('cgpa').value;
+            const percentage = document.getElementById('percentage').value;
+            const companyName = document.getElementById('companyName').value;
+            const experience_Company = document.getElementById('experienceCompany').value;
+            const jobType = document.getElementById('jobType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const tool = document.getElementById('tool').value;
+            const interpersonal = document.getElementById('interpersonal').value;
+            const projectName = document.getElementById('projectName').value;
+            const projectDes = document.getElementById('projectDes').value;
+            const projectTool = document.getElementById('projectTool').value;
+            
+
+
+
+
 
             const save_about = document.getElementById('save_about');
 
@@ -54,7 +74,24 @@
                 city,
                 state,
                 zip,
-                experience
+                experience,
+                degreeStatus,
+                degreeName,
+                university,
+                Completion_year,
+                cgpa,
+                percentage,
+                companyName,
+                experience_Company,
+                jobType,
+                startDate,
+                endDate,
+                tool,
+                interpersonal,
+                projectName,
+                projectDes,
+                projectTool,
+
                 // Add other fields as needed...
             };
 
@@ -208,7 +245,7 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <label for="degreeStatus" class="form-label">Status *</label>
-                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                <select class="form-select form-select-md" aria-label=".form-select-md example" id="degreeStatus"
                                     required>
                                     <option selected>--- Select Status ---</option>
                                     <option value="1">Pursuing</option>
@@ -310,7 +347,7 @@
                             <div class="col-6 mb-2">
                                 <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
                                 <select data-placeholder="Select Interpersonal Skill" multiple class="chosen-select"
-                                    name="test" id="tool" required>
+                                    name="test" id="interpersonal" required>
                                     <option>Communication</option>
                                     <option>Presentation</option>
                                     <option>Management</option>
