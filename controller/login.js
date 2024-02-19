@@ -3,9 +3,9 @@ const Student_signup = require("../models/student.js");
 function handlerStudentpageLogin(req, res) {
     return res.render("S_Login.ejs");
  }
- function handleIndex1(req,res) {
-    return res.render('index')
-  }
+//  function handleIndex1(req,res) {
+//     return res.render('index')
+//   }
 
 const handlerStudentDataFromLogin = async(req, res) =>{
 try {
@@ -30,5 +30,5 @@ try {
 module.exports={
     handlerStudentDataFromLogin,
     handlerStudentpageLogin ,
-    handleIndex1
+    // handleIndex1
 }
