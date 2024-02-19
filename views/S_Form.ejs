@@ -13,19 +13,86 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!-- Font-awesome cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/views/">
     <script src="jquery-3.6.3.min.js"></script>
+    <script>
+        function validateForm() {
+            const first_Name = document.getElementById('fname').value;
+            const last_Name = document.getElementById('lname').value;
+            const email = document.getElementById('email').value;
+            const date_of_birth = document.getElementById('dob').value;
+            const phone_no = document.getElementById('phone_no').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const zip = document.getElementById('zip').value;
+            const experience = document.getElementById('experience').value;
+
+            const save_about = document.getElementById('save_about');
+
+            save_about.addEventListener("click", addinfor);
+
+            if (!first_Name || !last_Name || !email || !date_of_birth || !phone_no || !address || !city || !state || !zip || !experience) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+            
+            // Prepare the data object
+            const formData = {
+                first_Name,
+                last_Name,
+                email,
+                date_of_birth,
+                phone_no,
+                address,
+                city,
+                state,
+                zip,
+                experience
+                // Add other fields as needed...
+            };
+
+             // Send the data to the server
+            function addinfor(){
+                    fetch('http://localhost:8001/api/S_Form', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Server response:', data);
+                        window.location.href = '/api/index';
+                        // Handle successful response from the server
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                        // Handle errors
+                    });
+            }
+            return true; // Assuming the form submission will proceed asynchronously
+            
+        }
+    </script>
 </head>
 
 <body>
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
-        <a href="index.html" class="navbar-brand ml-lg-3">
+        <a href="index.ejs" class="navbar-brand ml-lg-3">
             <h1 class="m-0 display-5"><span class="text-primary">Student Portfolio </span>Hub</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -56,7 +123,7 @@
         </div>
 
         <!-- About Section -->
-        <form class="row g-3" id="about">
+        <form action="localhost:8001/api/S_Form" method="post" onsubmit="return validateForm()" class="row g-3" id="about" >
             <fieldset class="border rounded-3 p-3">
                 <legend class="float-none w-auto px-3">About:</legend>
                 <label for="name" class="form-label">Name *</label>
@@ -115,7 +182,7 @@
 
                 <!-- save button-->
                 <div class="col-12 mb-2">
-                    <button type="submit" class="btn btn-primary mt-3">Save Details</button>
+                    <button type="submit" class="btn btn-primary mt-3" id="save_about">Save Details</button>
                 </div>
             </fieldset>
         </form>
@@ -126,61 +193,64 @@
 
         <!-- Education Section -->
         <!-- <form> -->
-        <fieldset class="border rounded-3 p-3 h-auto edu_parent" id="education_sec">
-            <legend class="float-none w-auto px-3">Education:</legend>
+        <form class="row g-3">
+            <fieldset class="border rounded-3 p-3 h-auto edu_parent" id="education_sec">
+                <legend class="float-none w-auto px-3">Education:</legend>
 
-            <div class="container" id="education">
-                <fieldset class="border rounded-3 p-3">
-                    <legend class="float-none w-auto px-3">DEGREE</legend>
-                    <div class="mb-3">
-                        <button type="button" class="btn-close float-end" id="closeBtn" data-bs-dismiss="education"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mb-2"> <label for="degreeName" class="form-label">Degree *</label>
-                            <input type="text" class="form-control" placeholder="--- Enter Degree ---" id="degreeName"
-                                required>
+                <div class="container" id="education">
+                    <fieldset class="border rounded-3 p-3">
+                        <legend class="float-none w-auto px-3">DEGREE</legend>
+                        <div class="mb-3">
+                            <button type="button" class="btn-close float-end" id="closeBtn" data-bs-dismiss="education"
+                                aria-label="Close"></button>
                         </div>
-                        <div class="col-6 mb-2">
-                            <label for="degreeStatus" class="form-label">Status *</label>
-                            <select class="form-select form-select-md" aria-label=".form-select-md example" required>
-                                <option selected>--- Select Status ---</option>
-                                <option value="1">Pursuing</option>
-                                <option value="2">Completed</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-12 mb-2"> <label for="degreeName" class="form-label">Degree *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Degree ---"
+                                    id="degreeName" required>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label for="degreeStatus" class="form-label">Status *</label>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    required>
+                                    <option selected>--- Select Status ---</option>
+                                    <option value="1">Pursuing</option>
+                                    <option value="2">Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label for="university" class="form-label">University/School/College *</label>
+                                <input type="text" class="form-control"
+                                    placeholder="Enter University or College or School" id="university" required>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label for="year" class="form-label">Completion Year *</label>
+                                <input type="number" class="form-control" max="2030" min="1990"
+                                    placeholder="Select Year" id="year" required>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label for="cgpa" class="form-label">CGPA</label>
+                                <input type="tel" class="form-control" maxlength="4" max="10"
+                                    placeholder="Add your CGPA" id="cgpa">
+                            </div>
+                            <div class="col-4 mb-3">
+                                <label for="percentage" class="form-label">Percentage</label>
+                                <input type="tel" class="form-control" maxlength="5" max="100" min=""
+                                    placeholder="Add your Percentage" id="percentage">
+                            </div>
                         </div>
-                        <div class="col-6 mb-2">
-                            <label for="university" class="form-label">University/School/College *</label>
-                            <input type="text" class="form-control" placeholder="Enter University or College or School"
-                                id="university" required>
-                        </div>
-                        <div class="col-4 mb-3">
-                            <label for="year" class="form-label">Completion Year *</label>
-                            <input type="number" class="form-control" max="2030" min="1990" placeholder="Select Year"
-                                id="year" required>
-                        </div>
-                        <div class="col-4 mb-3">
-                            <label for="cgpa" class="form-label">CGPA</label>
-                            <input type="tel" class="form-control" maxlength="4" max="10" placeholder="Add your CGPA"
-                                id="cgpa">
-                        </div>
-                        <div class="col-4 mb-3">
-                            <label for="percentage" class="form-label">Percentage</label>
-                            <input type="tel" class="form-control" maxlength="5" max="100" min=""
-                                placeholder="Add your Percentage" id="percentage">
-                        </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-               
-                <!-- Education section Over -->
-            </div>
-             <!-- save button-->
-             <div class="col-12 mb-2 education_btn">
-                <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                <button class=" btn text-primary mt-4" id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-            </div>
-        </fieldset>
+
+                    <!-- Education section Over -->
+                </div>
+                <!-- save button-->
+                <div class="col-12 mb-2 education_btn">
+                    <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
+                    <button class=" btn text-primary mt-4" id="plus_icon"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </fieldset>
+        </form>
 
 
 
@@ -338,7 +408,8 @@
         <!-- Achievement section Over -->
 
     </div>
-    <script src="/js/charts/S_Form.js"></script>
+    <!-- <script src="/js/charts/S_Form.js"></script> -->
+    <script>   var body = document.body;</script>
 </body>
 
 </html>
