@@ -29,6 +29,18 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    ProjectOriginalName: {
+      type: String
+    },
+    Projectpath: {
+      type: String
+    },
+    ProjectmimeType:{
+      type:String
+    },
+    data: {
+      type:Buffer
+    },
   },
   { timestamps: true }
 );

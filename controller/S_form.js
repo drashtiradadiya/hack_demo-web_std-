@@ -1,5 +1,8 @@
 const Student_signup = require("../models/student.js");
 const { MongoClient, ObjectId } = require('mongodb');
+const fs = require('fs');
+const path = require('path');
+
 
 // Database Name
 const uri = 'mongodb://localhost:27017';
@@ -105,7 +108,50 @@ function handleS_Form(req, res) {
     return res.render("S_Form");
 }
 
+const handlerForUploadFile = async (req, res) => {
+    // const { email } = req.body;
+    const file = req.file;
+    console.log("try1");
+    console.log(req.body);
+    console.log(file);
+
+
+   /* try {
+        // Find the user by email
+        const user = await Student_signup.findOne({ email });
+        console.log("try2");
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Read file data
+        const data = fs.readFileSync(file.path, 'utf8');
+
+        // Update user document with file information
+        const filter = { _id: user.id }; // Assuming _id is the MongoDB ObjectId
+        const update = {
+            ProjectOriginalName: file.originalname,
+            Projectpath: file.path,
+            ProjectmimeType: file.mimetype,
+            data: data,
+        };
+        console.log("try3");
+        const options = { upsert: true };
+    
+        const result = await Student_signup.updateOne(filter, update, options);
+        console.log(`${result.modifiedCount} document(s) updated`);
+
+        res.status(200).json({ message: 'File uploaded successfully', result });
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        res.status(500).json({ message: 'Internal Server Error', error });
+    }*/
+};
+   
+
 module.exports = {
     handleS_FormInsertData,
     handleS_Form,
+    handlerForUploadFile
 }
+        

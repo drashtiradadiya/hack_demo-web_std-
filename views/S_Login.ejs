@@ -30,7 +30,7 @@
 
             // Send the data to the server
             if (enrollment_No.toString().length === 11 || enrollment_No.toString().length === 9) {
-                fetch('http://localhost:8001/api/login', {
+                fetch('http://localhost:8001/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/api/index';
+                        window.location.href = '/index';
                         // Handle successful response from the server
                     })
                     .catch(error => {
@@ -70,7 +70,7 @@
             <div class="text-light title">
                 <h3 class="mt-3">LOGIN for Student!</h3>
             </div>
-            <form action="localhost:8001/api/login" method="post" onsubmit="return validateForm()">
+            <form action="localhost:8001/login" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 mt-3">
                     <label for="LoginEmail" class="form-label">Email</label>
                     <input type="email" class="form-control" name="" id="LoginEmail" aria-describedby="emailHelpId"
@@ -93,7 +93,7 @@
             </form>
             <div class="registration mt-3">
                 Don't have any account ?
-                <a class="loginLink" href="/api/sign">
+                <a class="loginLink" href="/">
                     Create your account
                 </a>
             </div>

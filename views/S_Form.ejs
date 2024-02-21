@@ -23,86 +23,42 @@
     <script src="jquery-3.6.3.min.js"></script>
     <script>
         function validateForm() {
-            const first_Name = document.getElementById('fname').value;
-            const last_Name = document.getElementById('lname').value;
-            const email = document.getElementById('email').value;
-            const date_of_birth = document.getElementById('dob').value;
-            const phone_no = document.getElementById('phone_no').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-            const zip = document.getElementById('zip').value;
-            const degree_Name = document.getElementById('degreeName').value;
-            const degreeStatus = document.getElementById('degreeStatus').value;
-            const university = document.getElementById('university').value;
-            const Completion_year = document.getElementById('year').value;
-            const cgpa = document.getElementById('cgpa').value;
-            const percentage = document.getElementById('percentage').value;
-            const companyName = document.getElementById('companyName').value;
-            const experience_Company = document.getElementById('experienceCompany').value;
-            const jobType = document.getElementById('jobType').value;
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
-            const tool = document.getElementById('tool').value;
-            const interpersonal = document.getElementById('interpersonal').value;
-            const projectName = document.getElementById('projectName').value;
-            const projectDes = document.getElementById('projectDes').value;
-            const projectTool = document.getElementById('projectTool').value;
-            
-
-
-
-
-
-            const save_about = document.getElementById('save_about');
-
-            save_about.addEventListener("click", addinfor);
-
-            if (!first_Name || !last_Name || !email || !date_of_birth || !phone_no || !address || !city || !state || !zip || !experience) {
-                alert('Please fill in all required fields.');
-                return false;
+            const formData = {
+                first_Name: document.getElementById('fname').value,
+                last_Name: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                date_of_birth: document.getElementById('dob').value,
+                phone_no: document.getElementById('phone_no').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                experience: document.getElementById('experience').value,
+                degreeName: document.getElementById('degreeName').value,
+                degreeStatus: document.getElementById('degreeStatus').value,
+                university: document.getElementById('university').value,
+                Completionyear: document.getElementById('year').value,
+                cgpa: document.getElementById('cgpa').value,
+                percentage: document.getElementById('percentage').value,
+                companyName: document.getElementById('companyName').value,
+                experienceCompany: document.getElementById('experienceCompany').value,
+                jobType: document.getElementById('jobType').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                tool: document.getElementById('tool').value,
+                interpersonal: document.getElementById('interpersonal').value,
+                projectName: document.getElementById('projectName').value,
+                projectDes: document.getElementById('projectDes').value,
+                projectTool: document.getElementById('projectTool').value,
             }
 
-            // Prepare the data object
-            const formData = {
-                first_Name,
-                last_Name,
-                email,
-                date_of_birth,
-                phone_no,
-                address,
-                city,
-                state,
-                zip,
-                experience,
-                degreeStatus,
-                degreeName,
-                university,
-                Completion_year,
-                cgpa,
-                percentage,
-                companyName,
-                experience_Company,
-                jobType,
-                startDate,
-                endDate,
-                tool,
-                interpersonal,
-                projectName,
-                projectDes,
-                projectTool,
-
-                // Add other fields as needed...
-            };
-
-            // Send the data to the server
-            function addinfor() {
-                fetch('http://localhost:8001/api/S_Form', {
+                fetch('http://localhost:8001/S_Form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formData)
+
                 })
                     .then(response => {
                         if (!response.ok) {
@@ -112,17 +68,36 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/api/index';
+                        window.location.href = '/index';
                         // Handle successful response from the server
                     })
                     .catch(error => {
                         console.error('There was a problem with the fetch operation:', error);
                         // Handle errors
                     });
-            }
             return true; // Assuming the form submission will proceed asynchronously
 
         }
+        document.getElementById('submit_about').addEventListener("click", function () {
+            validateForm('about');
+        });
+        document.getElementById('submit_education').addEventListener("click", function () {
+            validateForm('education');
+        });
+        document.getElementById('submit_job').addEventListener("click", function () {
+            validateForm('job');
+        });
+        document.getElementById('submit_achievment').addEventListener("click", function () {
+            validateForm('achievment');
+        });
+        document.getElementById('submi_project').addEventListener("click", function () {
+            validateForm('project');
+        });
+        document.getElementById('submi_skill').addEventListener("click", function () {
+            validateForm('skill');
+        });
+
+
     </script>
 </head>
 
@@ -160,7 +135,7 @@
         </div>
 
         <!-- About Section -->
-        <form action="localhost:8001/api/S_Form" method="post" onsubmit="return validateForm()" class="row g-3"
+        <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('about')" class="row g-3"
             id="about">
             <fieldset class="border rounded-3 p-3">
                 <legend class="float-none w-auto px-3">About:</legend>
@@ -217,7 +192,10 @@
                     <label for="experience" class="form-label">Experience (in years)</label>
                     <input type="number" maxlength="2" class="form-control" id="experience">
                 </div>
-
+                <div class="col-12 mb-2 save_btn">
+                    <button type="submit" class="btn btn-primary mt-3 submit" id="submit_about">Save Details</button>
+                    <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
+                </div>
             </fieldset>
         </form>
         <!-- About Section Over -->
@@ -226,12 +204,13 @@
 
 
         <!-- Education Section -->
-        <!-- <form> -->
-        <form class="row g-3">
+        <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('education')" class="row g-3"
+            id="education">
+
             <fieldset class="border rounded-3 p-3 h-auto edu_parent" id="education_sec">
                 <legend class="float-none w-auto px-3">Education:</legend>
 
-                <div class="container" id="education">
+                <form class="container" id="education">
                     <fieldset class="border rounded-3 p-3">
                         <legend class="float-none w-auto px-3">DEGREE</legend>
                         <div class="mb-3">
@@ -245,8 +224,8 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <label for="degreeStatus" class="form-label">Status *</label>
-                                <select class="form-select form-select-md" aria-label=".form-select-md example" id="degreeStatus"
-                                    required>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    id="degreeStatus" required>
                                     <option selected>--- Select Status ---</option>
                                     <option value="1">Pursuing</option>
                                     <option value="2">Completed</option>
@@ -273,9 +252,15 @@
                                     placeholder="Add your Percentage" id="percentage">
                             </div>
                         </div>
+                        <div class="col-12 mb-2 save_btn">
+                            <button type="submit" class="btn btn-primary mt-3 submit" id="submit_education">Save
+                                Details</button>
+                            <button class=" btn text-primary mt-4 " id="plus_icon"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
                     </fieldset>
+                </form>
 
-                </div>
 
 
 
@@ -283,7 +268,9 @@
 
 
                 <!-- Experience Section -->
-                <form id="ex">
+                <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('job')" class="row g-3"
+                    id="job">
+
                     <fieldset class="border rounded-3 p-3 h-auto">
                         <legend class="float-none w-auto px-3">Job / Internship:</legend>
                         <div class="mb-3">
@@ -319,9 +306,12 @@
                                     id="endDate">
                             </div>
                         </div>
-
-
-
+                        <div class="col-12 mb-2 save_btn">
+                            <button type="submit" class="btn btn-primary mt-3 submit" id="submit_job">Save
+                                Details</button>
+                            <button class=" btn text-primary mt-4 " id="plus_icon"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
                     </fieldset>
                 </form>
                 <!-- Experience section Over -->
@@ -330,7 +320,9 @@
 
 
                 <!-- Skill Section -->
-                <form action="http://httpbin.org/post" method="post">
+                <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('skill')"
+                    class="row g-3" id="skill">
+
                     <fieldset class="border rounded-3 p-3 h-auto" id="skill">
                         <legend class="float-none w-auto px-3">Skills:</legend>
                         <div class="row">
@@ -354,7 +346,12 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="col-12 mb-2 save_btn">
+                            <button type="submit" class="btn btn-primary mt-3 submit" id="submit_skill">Save
+                                Details</button>
+                            <button class=" btn text-primary mt-4 " id="plus_icon"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
 
                     </fieldset>
                 </form>
@@ -363,8 +360,9 @@
 
 
                 <!-- Project Section -->
+                <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('project')"
+                    class="row g-3" id="project">
 
-                <form id="project">
                     <fieldset class="border rounded-3 p-3 h-auto">
                         <legend class="float-none w-auto px-3">Project:</legend>
                         <div class="mb-3">
@@ -393,7 +391,12 @@
                                 <option>HTML</option>
                             </select>
                         </div>
-
+                        <div class="col-12 mb-2 save_btn">
+                            <button type="submit" class="btn btn-primary mt-3 submit" id="submi_project">Save
+                                Details</button>
+                            <button class=" btn text-primary mt-4 " id="plus_icon"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
                     </fieldset>
                 </form>
 
@@ -417,29 +420,30 @@
                             <input type="text" class="form-control" placeholder="Enter Your Domain" id="domain">
                         </div>
                     </div>
-
+                    <div class="col-12 mb-2 save_btn">
+                        <button type="submit" class="btn btn-primary mt-3 submit" id="submit_achievment">Save
+                            Details</button>
+                        <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
+                    </div>
                 </fieldset>
                 <!-- </form> -->
 
                 <!-- Achievement section Over -->
 
                 <!-- Project -->
-                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file">
-                    <button type="submit">Upload File</button>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="Projectfile" id="uploadProject">
+                    <button type="submit" id="submit1">Upload File</button>
                 </form>
 
                 <!-- Certificate -->
-                <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="" id="uploadCertificate">
                     <button type="submit">Upload File</button>
                 </form>
 
                 <!-- save button-->
-                <div class="col-12 mb-2 save_btn">
-                    <button type="submit" class="btn btn-primary mt-3 submit">Save Details</button>
-                    <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
-                </div>
+                >
     </div>
     <!-- <script src="/js/charts/S_Form.js"></script> -->
     <script>   var body = document.body;</script>
