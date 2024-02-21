@@ -26,11 +26,11 @@ async function handleS_FormInsertData(req, res) {
             degreeStatus,
             degreeName,
             university,
-            Completion_year,
+            Completionyear,
             cgpa,
             percentage,
             companyName,
-            experience_Company,
+            experienceCompany,
             jobType,
             startDate,
             endDate,
@@ -72,11 +72,11 @@ async function handleS_FormInsertData(req, res) {
             degreeStatus,
             degreeName,
             university,
-            Completion_year,
+            Completionyear,
             cgpa,
             percentage,
             companyName,
-            experience_Company,
+            experienceCompany,
             jobType,
             startDate,
             endDate,
@@ -108,7 +108,7 @@ function handleS_Form(req, res) {
     return res.render("S_Form");
 }
 
-const handlerForUploadFile = async (req, res) => {
+async function handlerForUploadFile  (req, res)  {
     // const { email } = req.body;
     const file = req.file;
     console.log("try1");

@@ -1,7 +1,7 @@
 const Student_signup = require("../models/student.js");
 // const crypto = require('crypto');
 function handlerStudentpageLogin(req, res) {
-    return res.render("S_Login.ejs");
+    return res.render("S_Login");
  }
 //  function handleIndex1(req,res) {
 //     return res.render('index')
