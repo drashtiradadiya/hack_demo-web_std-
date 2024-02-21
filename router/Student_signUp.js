@@ -1,3 +1,4 @@
+
 const express= require('express');
 const router=express.Router();
 
@@ -15,6 +16,4 @@ router.get('/login', handlerStudentpageLogin);
 router.post('/login', handlerStudentDataFromLogin);
 router.get('/S_Form',handleS_Form);
 // router.post('/S_Form',upload.single('Projectfile'),handleS_FormInsertData);
-
-// router.post('/upload', ,handlerForUploadFile);
 module.exports=router;

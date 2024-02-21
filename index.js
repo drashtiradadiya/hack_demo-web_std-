@@ -24,6 +24,7 @@ mongoose.connect("mongodb://localhost:27017/StudentPannel").then((res) => {
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
+<<<<<<< HEAD
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
    return cb(null, "./uploads"); // specify the destination folder for uploaded files
@@ -36,6 +37,9 @@ const upload = multer({ storage: storage });
 
 app.use("/", routes);
 app.post("/upload",upload.single('Projectfile'),handlerForUploadFile);
+=======
+app.use("/", routes);
+>>>>>>> 720036e230458953b28db1f798f6e345ff6370eb
 app.listen(port, () => {
   console.log(`Server started at port:${port}`);
 });
