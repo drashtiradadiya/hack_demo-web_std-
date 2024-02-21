@@ -43,7 +43,27 @@
             const city = document.getElementById('city').value;
             const state = document.getElementById('state').value;
             const zip = document.getElementById('zip').value;
-            const experience = document.getElementById('experience').value;
+            const degree_Name = document.getElementById('degreeName').value;
+            const degreeStatus = document.getElementById('degreeStatus').value;
+            const university = document.getElementById('university').value;
+            const Completion_year = document.getElementById('year').value;
+            const cgpa = document.getElementById('cgpa').value;
+            const percentage = document.getElementById('percentage').value;
+            const companyName = document.getElementById('companyName').value;
+            const experience_Company = document.getElementById('experienceCompany').value;
+            const jobType = document.getElementById('jobType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const tool = document.getElementById('tool').value;
+            const interpersonal = document.getElementById('interpersonal').value;
+            const projectName = document.getElementById('projectName').value;
+            const projectDes = document.getElementById('projectDes').value;
+            const projectTool = document.getElementById('projectTool').value;
+
+
+
+
+
 
             const save_about = document.getElementById('save_about');
 
@@ -65,13 +85,30 @@
                 city,
                 state,
                 zip,
-                experience
+                experience,
+                degreeStatus,
+                degreeName,
+                university,
+                Completion_year,
+                cgpa,
+                percentage,
+                companyName,
+                experience_Company,
+                jobType,
+                startDate,
+                endDate,
+                tool,
+                interpersonal,
+                projectName,
+                projectDes,
+                projectTool,
+
                 // Add other fields as needed...
             };
 
             // Send the data to the server
             function addinfor() {
-                fetch('http://localhost:8001/api/S_Form', {
+                fetch('http://localhost:8001/S_Form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -86,7 +123,7 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/api/index';
+                        window.location.href = '/index';
                         // Handle successful response from the server
                     })
                     .catch(error => {
@@ -134,8 +171,7 @@
         </div>
 
         <!-- About Section -->
-        <form action="localhost:8001/api/S_Form" method="post" onsubmit="return validateForm()" class="row g-3"
-            id="about">
+        <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm()" class="row g-3" id="about">
             <fieldset class="border rounded-3 p-3">
                 <legend class="float-none w-auto px-3">About:</legend>
                 <label for="name" class="form-label">Name *</label>
@@ -220,7 +256,7 @@
                             <div class="col-6 mb-2">
                                 <label for="degreeStatus" class="form-label">Status *</label>
                                 <select class="form-select form-select-md" aria-label=".form-select-md example"
-                                    required>
+                                    id="degreeStatus" required>
                                     <option selected>--- Select Status ---</option>
                                     <option value="1">Pursuing</option>
                                     <option value="2">Completed</option>
@@ -322,6 +358,7 @@
                                 <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
                                 <select data-placeholder="Select Interpersonal Skill" class="selectpicker" multiple
                                     data-live-search="true" name="test" id="tool" required>
+                                    name="test" id="interpersonal" required>
                                     <option>Communication</option>
                                     <option>Presentation</option>
                                     <option>Management</option>

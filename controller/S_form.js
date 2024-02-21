@@ -10,7 +10,32 @@ const client = new MongoClient(uri);
 
 async function handleS_FormInsertData(req, res) {
     try {
-        const { first_Name, last_Name, email, date_of_birth, phone_no, address, city, state, zip, experience } = req.body;
+        const {first_Name,
+            last_Name,
+            email,
+            date_of_birth,
+            phone_no,
+            address,
+            city,
+            state,
+            zip,
+            experience,
+            degreeStatus,
+            degreeName,
+            university,
+            Completion_year,
+            cgpa,
+            percentage,
+            companyName,
+            experience_Company,
+            jobType,
+            startDate,
+            endDate,
+            tool,
+            interpersonal,
+            projectName,
+            projectDes,
+            projectTool, } = req.body;
         
         // Find the user by email
         const user = await Student_signup.findOne({ email });
@@ -40,7 +65,23 @@ async function handleS_FormInsertData(req, res) {
             city,
             state,
             zip,
-            experience
+            experience,
+            degreeStatus,
+            degreeName,
+            university,
+            Completion_year,
+            cgpa,
+            percentage,
+            companyName,
+            experience_Company,
+            jobType,
+            startDate,
+            endDate,
+            tool,
+            interpersonal,
+            projectName,
+            projectDes,
+            projectTool,
         };
 
         // Update the document with the new data
