@@ -114,9 +114,7 @@ const handlerForUploadFile = async (req, res) => {
     console.log("try1");
     console.log(req.body);
     console.log(file);
-
-
-   /* try {
+ try {
         // Find the user by email
         const user = await Student_signup.findOne({ email });
         console.log("try2");
@@ -145,7 +143,7 @@ const handlerForUploadFile = async (req, res) => {
     } catch (error) {
         console.error('Error uploading file:', error);
         res.status(500).json({ message: 'Internal Server Error', error });
-    }*/
+    }
 };
    
 
