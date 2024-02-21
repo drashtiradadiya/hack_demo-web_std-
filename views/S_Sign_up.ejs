@@ -48,7 +48,7 @@
 
             // Send the data to the server
             if (enrollment_No.toString().length === 11 || enrollment_No.toString().length === 9) {
-                fetch('http://localhost:8001/api/sign', {
+                fetch('http://localhost:8001/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/api/login';
+                        window.location.href = '/login';
                         // Handle successful response from the server
                     })
                     .catch(error => {
@@ -78,7 +78,7 @@
 
             function passwordConformation() {
                 if (password == confirm_password && password != "") {
-                    fetch('http://localhost:8001/api/sign', {
+                    fetch('http://localhost:8001/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -93,7 +93,7 @@
                         })
                         .then(data => {
                             console.log('Server response:', data);
-                            window.location.href = '/api/login';
+                            window.location.href = '/login';
                             // Handle successful response from the server
                         })
                         .catch(error => {
@@ -120,7 +120,7 @@
                     Sign Up for Students
                 </h3>
             </div>
-            <form action="localhost:8001/api/sign" method="post" onsubmit="return validateForm()">
+            <form action="localhost:8001/" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 mt-4">
                     <label for="first_Name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="first_Name" placeholder="First Name" required>
@@ -167,7 +167,7 @@
             </form>
             <div class="registration mt-3">
                 Do you have any account ?
-                <a class="signupLink" href="/api/login">
+                <a class="signupLink" href="/login">
                     Login your account
                 </a>
             </div>

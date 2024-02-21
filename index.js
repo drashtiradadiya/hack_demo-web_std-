@@ -36,7 +36,7 @@ mongoose.connect("mongodb://localhost:27017/StudentPannel").then((res) => {
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
-app.use("/api", routes);
+app.use("/", routes);
 app.listen(port, () => {
   console.log(`Server started at port:${port}`);
 });
