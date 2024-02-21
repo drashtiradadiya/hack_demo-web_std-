@@ -33,18 +33,8 @@
 
     <script src="jquery-3.6.3.min.js"></script>
     <script>
-        const email= dodocument.getElementById('email').value;
-        const formData={
-            email
-        }
-        fetch('http://localhost:8001/S_Form', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-
-                });
+        
+     
         function validateForm() {
             const formData = {
                 first_Name: document.getElementById('fname').value,
