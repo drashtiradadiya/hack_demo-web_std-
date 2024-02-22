@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator")
 // const bcrypt = require('bcrypt');
 
 const studentSchema = new mongoose.Schema(
@@ -15,6 +16,8 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, 'Please Enter a vaild email.']
     },
     enrollment_No: {
       type: Number,
@@ -24,6 +27,18 @@ const studentSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      minlength: 8
+    },
+    confirm_password: {
+      type: String,
+      required: [true, 'Please Confirm your password.'],
+      validate: {
+        //
+        validator: function (val) {
+          return val == this.password;
+        },
+        message: 'Password and Confirm password does not match.'
+      }
     },
     IpAddress: {
       type: String,
@@ -35,11 +50,11 @@ const studentSchema = new mongoose.Schema(
     Projectpath: {
       type: String
     },
-    ProjectmimeType:{
-      type:String
+    ProjectmimeType: {
+      type: String
     },
     data: {
-      type:Buffer
+      type: Buffer
     },
   },
   { timestamps: true }

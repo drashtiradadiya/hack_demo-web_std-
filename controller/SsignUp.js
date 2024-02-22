@@ -8,13 +8,14 @@ function handleIndex(req, res) {
   return res.render('index')
 }
 const handlerStudentDataFromSignUp = async (req, res) => {
-  const { first_Name, last_Name, password, email, enrollment_No } = await req.body;
+  const { first_Name, last_Name, password, confirm_password, email, enrollment_No } = await req.body;
   const ip = req.ip
   // console.log(first_Name);
   await Student_signup.create({
     first_Name,
     last_Name,
     password,
+    confirm_password,
     enrollment_No,
     email,
     IpAddress: ip
