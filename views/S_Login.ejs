@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Login | Student Portfolio</title>
 
     <!-- Bootstrap CDN -->
@@ -18,7 +19,7 @@
     <script>
         function validateForm() {
             const email = document.getElementById('LoginEmail').value;
-            const enrollment_No = document.getElementById('enrollNo').value;
+            const enrollment_No = document.getElementById('enrollment_No').value;
             const password = document.getElementById('password').value;
 
             // Validate other fields if needed...
@@ -62,6 +63,7 @@
         }
 
     </script>
+
 </head>
 
 <body>
@@ -77,8 +79,8 @@
                         placeholder="abc@mail.com" required />
                 </div>
                 <div class="mb-3">
-                    <label for="enrollNo" class="form-label">Enrollment Number</label>
-                    <input type="tel" maxlength="11" class="form-control" id="enrollNo" value=""
+                    <label for="enrollment_No" class="form-label">Enrollment Number</label>
+                    <input type="tel" maxlength="11" class="form-control" id="enrollment_No" value=""
                         placeholder="Enter Enrollment No" required />
                 </div>
 
@@ -102,6 +104,6 @@
     <script>
         var body = document.body;
     </script>
+<script src="/js/passVriable.js"></script>
 </body>
-
 </html>
