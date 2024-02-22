@@ -2,7 +2,7 @@ const Student_signup = require("../models/student.js");
 const { MongoClient, ObjectId } = require('mongodb');
 const fs = require('fs');
 const path = require('path');
-
+const enrollNo=require('../passVriable.js');
 
 // Database Name
 const uri = 'mongodb://localhost:27017';
@@ -116,7 +116,8 @@ async function handlerForUploadFile  (req, res)  {
     console.log(file);
  try {
         // Find the user by email
-        const user = await Student_signup.findOne({ email });
+        const user = await Student_signup.findOne({enrollNo});
+        console.log(user);
         console.log("try2");
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
