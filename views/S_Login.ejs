@@ -46,7 +46,7 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/index';
+                        // window.location.href = '/index';
                         // Handle successful response from the server
                     })
                     .catch(error => {
@@ -75,7 +75,7 @@
             <form action="localhost:8001/login" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 mt-3">
                     <label for="LoginEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="" id="LoginEmail" aria-describedby="emailHelpId"
+                    <input type="email" class="form-control" name="email" id="LoginEmail" aria-describedby="emailHelpId"
                         placeholder="abc@mail.com" required>
                 </div>
                 <div class="mb-3">

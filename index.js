@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const userRouter = require("./router/authStudent")
 const mongoose = require("mongoose");
 const {handlerForUploadFile}=require("./controller/S_form");
+const ejs=require('ejs');
 const multer = require("multer"); // Specify upload directory
 
 
@@ -13,7 +14,7 @@ const routes = require("./router/Student_signUp");
 const path = require("path");
 app.use(express.static("public")); //for css & image & js
 app.use(bodyParser.json()); // Parse JSON-encoded bodies
-app.use(express.urlencoded({ extended: false})); // Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true})); // Parse URL-encoded bodies
 //Connection
 
 

@@ -31,10 +31,11 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link href="/css/style.css" rel="stylesheet">
-
+    <!-- <script src="./passVarible.js"></script> -->
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51" style="background-color:#ffffff;">
+
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg  navbar-light py-3 py-lg-0 px-lg-5"
         style="background-color: #B3A398;">
@@ -74,7 +75,9 @@
                 <div class="col-lg-5 text-center text-lg-left">
                     <h3 class="text-white font-weight-normal mb-3">Hello, my name</h3>
                     <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 4px #ffffff;">
-                        Alaxe Smith</h1>
+                        <%= data.enrollment_No %>
+                            <!-- <%= data.lname %> -->
+                    </h1>
                     <h1 class="typed-text-output d-inline font-weight-bold " style="color:#202738;"></h1>
                     <div class="typed-text d-none" style="color: #FDE5D4;">Web Designer, Web Developer, Front End
                         Developer, Apps Designer, Apps

@@ -1,12 +1,19 @@
 const Student_signup = require("../models/student.js");
+const express = require("express");
+const ejs = require("ejs")
 // ../models/student.js
 function handlerStudentpageSignUp(req, res) {
   return res.render("S_Sign_up");
 }
 
 function handleIndex(req, res) {
-  return res.render('index')
+  const enrollment_No = req.body.enrollment_No; // Assuming enrollment_No is passed via the query string or some other means
+  const data = {
+    enrollment_No : enrollment_No,
+  }
+   return res.render('index', { data :data });
 }
+
 const handlerStudentDataFromSignUp = async (req, res) => {
   const { first_Name, last_Name, password, confirm_password, email, enrollment_No } = await req.body;
   const ip = req.ip
