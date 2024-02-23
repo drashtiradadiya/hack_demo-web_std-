@@ -25,9 +25,9 @@
             const enrollment_No = document.getElementById('enrollment_No').value;
             const password = document.getElementById('password').value;
             const confirm_password = document.getElementById('confirm_password').value;
-            const submit = document.getElementById('submit');
+            // const submit = document.getElementById('submit');
 
-            submit.addEventListener("click", passwordConformation);
+            // submit.addEventListener("click", passwordConformation);
 
             // Validate other fields if needed...
 
@@ -49,35 +49,14 @@
 
             // Send the data to the server
             if (enrollment_No.toString().length === 11 || enrollment_No.toString().length === 9) {
-                fetch('http://localhost:8001/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Server response:', data);
-                        window.location.href = '/login';
-                        // Handle successful response from the server
-                    })
-                    .catch(error => {
-                        console.error('There was a problem with the fetch operation:', error);
-                        // Handle errors
-                    });
+                // return true;
             }
             else {
                 alert('Please Enter Valid Enrollment No.');
                 return false;
             }
 
-            function passwordConformation() {
+            
                 if (password == confirm_password && password != "") {
                     fetch('http://localhost:8001/', {
                         method: 'POST',
@@ -101,12 +80,12 @@
                             console.error('There was a problem with the fetch operation:', error);
                             // Handle errors
                         });
-                } else if (password === "") {
-                } else {
+                } 
+                 else {
                     alert("Not equal password");
                     return false;
                 }
-            }
+            
             return true; // Assuming the form submission will proceed asynchronously
         }
 
@@ -140,8 +119,8 @@
 
                 <!-- Enrollment No -->
                 <div class="mb-3">
-                    <label for="enrollmentNo" class="form-label">Enrollment No</label>
-                    <input type="tel" maxlength="11" class="form-control" id="enrollmentNo" placeholder="Enrollment No"
+                    <label for="enrollment_No" class="form-label">Enrollment No</label>
+                    <input type="tel" maxlength="11" class="form-control" id="enrollment_No" placeholder="Enrollment No"
                         required>
                 </div>
                 <!-- Password -->
@@ -177,7 +156,6 @@
     <script>
         var body = document.body;
     </script>
-   <script src="/js/passVriable.js"></script>
 </body>
 
 </html>

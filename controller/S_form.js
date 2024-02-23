@@ -2,7 +2,7 @@ const Student_signup = require("../models/student.js");
 const { MongoClient, ObjectId } = require('mongodb');
 const fs = require('fs');
 const path = require('path');
-const enrollNo=require('../passVriable.js');
+
 
 // Database Name
 const uri = 'mongodb://localhost:27017';
