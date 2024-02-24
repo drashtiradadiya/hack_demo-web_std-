@@ -1,14 +1,11 @@
 const Student_signup = require("../models/student.js");
 const express = require("express");
-const { MongoClient, ObjectId } = require('mongodb');
 
 const ejs = require("ejs");
-
 
 function handlerStudentpageSignUp(req, res) {
   return res.render("S_Sign_up");
 }
-
  async function handlerIndex(req, res) {
     const {enrollment_No } = req.query;
     console.log(enrollment_No); 

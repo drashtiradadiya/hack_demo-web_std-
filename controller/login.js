@@ -1,6 +1,6 @@
 const Student_signup = require("../models/student.js");
-// const ejs = require('ejs');
-// const http=require("http");
+
+const ejs = require('ejs');
 
 // const crypto = require('crypto');
 function handlerStudentpageLogin(req, res) {
