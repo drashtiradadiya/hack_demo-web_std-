@@ -46,7 +46,7 @@
                     })
                     .then(data => {
                         console.log('Server response:', data);
-                        window.location.href = '/index';
+                        window.location.href = `/index?enrollment_No=${enrollment_No}`;    
                         // Handle successful response from the server
                     })
                     .catch(error => {
@@ -75,13 +75,13 @@
             <form action="localhost:8001/login" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 mt-3">
                     <label for="LoginEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="" id="LoginEmail" aria-describedby="emailHelpId"
+                    <input type="email" class="form-control" name="email" id="LoginEmail" aria-describedby="emailHelpId"
                         placeholder="abc@mail.com" required>
                 </div>
                 <div class="mb-3">
                     <label for="enrollment_No" class="form-label">Enrollment Number</label>
                     <input type="tel" maxlength="11" class="form-control" id="enrollment_No" value=""
-                        placeholder="Enter Enrollment No" required>
+                        placeholder="Enter Enrollment No" autocomplete="enrollment_no" required>
                 </div>
 
                 <div class="mb-3">

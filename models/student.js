@@ -27,7 +27,8 @@ const studentSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minlength: 8
+      minlength: 8,
+      maxlength: 20
     },
     confirm_password: {
       type: String,
@@ -60,19 +61,12 @@ const studentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 // Hash the password before saving the user
-/*studentSchema.pre('save', async function (next) {
-    const student = this;
-    if (!student.isModified('password')) return next();
+// studentSchema.pre('save', async function (next) {
+//     const student = this;
+//     if (this.isModified('password')) return next();
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(student.password, salt);
-        student.password = hash;
-        next();
-    } catch (error) {
-        return next(error);
-    }
-});*/
+//     bcrypt.hash(this.password, 12)
+// });
 const Student_signup = mongoose.model("student_info", studentSchema);
 
 module.exports = Student_signup;

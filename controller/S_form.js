@@ -11,7 +11,7 @@ const dbName = 'StudentPannel';
 // Create a new MongoClient
 const client = new MongoClient(uri);
 
-async function handleS_FormInsertData(req, res) {
+async function handlerS_FormInsertData(req, res) {
     try {
         const {first_Name,
             last_Name,
@@ -104,7 +104,7 @@ async function handleS_FormInsertData(req, res) {
     }
 }
 
-function handleS_Form(req, res) {
+function handlerS_Form(req, res) {
     return res.render("S_Form");
 }
 
@@ -149,8 +149,8 @@ async function handlerForUploadFile  (req, res)  {
    
 
 module.exports = {
-    handleS_FormInsertData,
-    handleS_Form,
+    handlerS_FormInsertData,
+    handlerS_Form,
     handlerForUploadFile
 }
         
