@@ -75,7 +75,7 @@
                 <div class="col-lg-5 text-center text-lg-left">
                     <h3 class="text-white font-weight-normal mb-3">Hello, my name</h3>
                     <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 4px #ffffff;">
-                     <%= user.first_Name %>  
+                        <%= user.first_Name %>
                     </h1>
                     <h1 class="typed-text-output d-inline font-weight-bold " style="color:#202738;"></h1>
                     <div class="typed-text d-none" style="color: #FDE5D4;">Web Designer, Web Developer, Front End
@@ -117,25 +117,38 @@
                         lorem diam dolor justo et dolor dolor dolor</p>
                     <div class="row mb-3">
                         <div class="col-sm-6 py-2" id="nameofStudent">
-                            <h6>Name:<%= user.first_Name %> <%= user.last_Name %><span class="text-secondary"></span></h6>
+                            <h6>Name: <span class="text-secondary">
+                                    <%= user.first_Name %>
+                                        <%= user.last_Name %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Birthday: <span class="text-secondary"><%= user.date_of_birth %></span></h6>
+                            <h6>Birthday: <span class="text-secondary">
+                                    <%= user.date_of_birth %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
                             <h6>Degree: <span class="text-secondary">Master</span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Experience: <span class="text-secondary"><%= user.experience %></span></h6>
+                            <h6>Experience: <span class="text-secondary">
+                                    <%= user.experience %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Phone: <span class="text-secondary"><%= user.phone_no %></span></h6>
+                            <h6>Phone: <span class="text-secondary">
+                                    <%= user.phone_no %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Email: <span class="text-secondary"><%= user.email %></span></h6>
+                            <h6>Email: <span class="text-secondary">
+                                    <%= user.email %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Address: <span class="text-secondary"><%= user.address %></span></h6>
+                            <h6>Address: <span class="text-secondary">
+                                    <%= user.address %>
+                                </span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
                             <h6>Freelance: <span class="text-secondary">Available</span></h6>
@@ -160,38 +173,39 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                       <form>
-                        <div class="col-6">
-                            <label for="fname" class="form-label ">First Name:</label>
-                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"
-                                id="fname">
-                        </div>
-                        <div class="col-6">
-                            <label for="lname" class="form-label">Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
-                                id="lname">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="dob" class="form-label">DOB:</label>
-                            <input type="date" class="form-control" id="dob">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="phone_no" class="form-label">Phone No.</label>
-                            <input type="tel" maxlength="10" class="form-control" id="phone_no" placeholder="Phone No.">
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="experience" class="form-label">Experience:</label>
-                            <input type="number" class="form-control" id="experience">
-                        </div>
-                        <div class="col-12 mt-3">
-                            <label for="address" class="form-label">Address:</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
-                        </div>
-                    </form>
+                        <form>
+                            <div class="col-6">
+                                <label for="fname" class="form-label ">First Name:</label>
+                                <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                                    id="fname">
+                            </div>
+                            <div class="col-6">
+                                <label for="lname" class="form-label">Last Name:</label>
+                                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                                    id="lname">
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="dob" class="form-label">DOB:</label>
+                                <input type="date" class="form-control" id="dob">
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="phone_no" class="form-label">Phone No.</label>
+                                <input type="tel" maxlength="10" class="form-control" id="phone_no"
+                                    placeholder="Phone No.">
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="experience" class="form-label">Experience:</label>
+                                <input type="number" class="form-control" id="experience">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="address" class="form-label">Address:</label>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+                            </div>
+                        </form>
                     </div>
                 </div>
 
