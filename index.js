@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = 8001;
 const bodyParser = require("body-parser");
-const userRouter = require("./router/authStudent");
 const mongoose = require("mongoose");
 const { handlerForUploadFile } = require("./controller/S_form");
 const ejs = require("ejs");
