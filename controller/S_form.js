@@ -105,18 +105,19 @@ async function handlerS_FormInsertData(req, res) {
 }
 
 function handlerS_Form(req, res) {
-    return res.render("S_Form");
+    const enrollment_No = req.query.enrollment_No;
+    return res.render('S_Form',{enrollment_No});
 }
 
 async function handlerForUploadFile  (req, res)  {
-    // const { email } = req.body;
+    const enrollment_No  = req.query.enrollment_No;
     const file = req.file;
     console.log("try1");
     console.log(req.body);
     console.log(file);
  try {
         // Find the user by email
-        const user = await Student_signup.findOne({enrollNo});
+        const user = await Student_signup.findOne({enrollment_No});
         console.log(user);
         console.log("try2");
         if (!user) {

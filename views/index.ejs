@@ -57,7 +57,7 @@
                 <!-- <a href="#contact" class="nav-item nav-link">Contact</a> -->
 
             </div>
-            <a href="/S_form" class="btn btn-menu d-none d-lg-block"
+            <a href="/S_form?enrollment=<%- user.enrollment_No %>" class="btn btn-menu d-none d-lg-block"
                 style="background-color:#001524; color: #ffffff; border: none;">Create Portfolio
             </a>
         </div>
@@ -117,25 +117,25 @@
                         lorem diam dolor justo et dolor dolor dolor</p>
                     <div class="row mb-3">
                         <div class="col-sm-6 py-2" id="nameofStudent">
-                            <h6>Name:<%= user.first_Name %> <%= user.last_Name %><span class="text-secondary"></span></h6>
+                            <h6>Name: <%= user.first_Name %> <%= user.last_Name %><span class="text-secondary"></span></h6>
                         </div>
-                        <div class="col-sm-6 py-2">
-                            <h6>Birthday: <span class="text-secondary"><%= user.date_of_birth %></span></h6>
+                        <div class="col-sm-6 py-2" id="date_of_birth">
+                            <h6>Birthday: <%= user.date_of_birth %> <span class="text-secondary"></span></h6>
                         </div>
-                        <div class="col-sm-6 py-2">
+                        <div class="col-sm-6 py-2" id="">
                             <h6>Degree: <span class="text-secondary">Master</span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Experience: <span class="text-secondary"><%= user.experience %></span></h6>
+                            <h6>Experience: <%= user.experience %><span class="text-secondary"></span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Phone: <span class="text-secondary"><%= user.phone_no %></span></h6>
+                            <h6>Phone: <%= user.phone_no %><span class="text-secondary"></span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Email: <span class="text-secondary"><%= user.email %></span></h6>
+                            <h6>Email: <%= user.email %><span class="text-secondary"></span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
-                            <h6>Address: <span class="text-secondary"><%= user.address %></span></h6>
+                            <h6>Address: <%= user.address %><span class="text-secondary"></span></h6>
                         </div>
                         <div class="col-sm-6 py-2">
                             <h6>Freelance: <span class="text-secondary">Available</span></h6>
