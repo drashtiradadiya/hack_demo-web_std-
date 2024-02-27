@@ -20,7 +20,7 @@ const studentSchema = new mongoose.Schema(
       validate: [validator.isEmail, "Please Enter a vaild email."],
     },
     enrollment_No: {
-      type: String,
+      type: Number,
       required: true,
       unique: true,
     },

@@ -11,8 +11,9 @@ function handlerStudentpageLogin(req, res) {
 const handlerStudentDataFromLogin = async(req,res) => {
     try {
         const {email, enrollment_No, password} = req.body;
+       console.log(enrollment_No);
+       const user = await Student_signup.findOne({enrollment_No: enrollment_No});
 
-        const user = await Student_signup.findOne({enrollment_No})
         console.log(user)
         if(!user) {
             return res.status(401).json(
@@ -20,7 +21,7 @@ const handlerStudentDataFromLogin = async(req,res) => {
             )
         }
 
-        if(user.email === email && user.password === password && user.enrollment_No === enrollment_No) {
+        if(user.email === email && user.password === password && user.enrollment_No == enrollment_No) {
             return res.status(200).json({message: 'Login Successfully'})
         }
 

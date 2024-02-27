@@ -38,17 +38,16 @@
                     },
                     body: JSON.stringify({ email, enrollment_No, password })
                 })
-                .then((res => {
-                    if(res.status === 200) {
+                    .then((res => {
+                        // if(res.status === 200) {
                         console.log(res.status)
                         window.localStorage.setItem('enrollmentNo', enrollment_No)
                         window.location.href = `/index?enrollment_No=${enrollment_No}`;
-                    } 
-                    else {
-                        alert('Invalid data')
-                        
-                    }
-                }))
+                        // } 
+                        // else {
+                        // alert('Invalid data')
+                        // }
+                    }))
             }
             else {
                 alert('Please Enter Valid Enrollment No.');
