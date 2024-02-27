@@ -33,6 +33,38 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <script src="jquery-3.6.3.min.js"></script>
     <script>
+
+function handleFile() {
+    const fileInput = document.getElementById('Projectfile');
+    const file = fileInput.files[0];
+
+    const formData = new FormData();
+
+    const enrollment_No =localStorage.getItem('enrollmentNo')
+
+    formData.append('Projectfile', file);
+    formData.append('enrollmentNo',enrollment_No)
+
+    fetch('http://localhost:8001/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+        // Handle successful response from the server
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        // Handle errors
+    });
+}
+
         function validateForm(section) {
             const formData = {
                 first_Name: document.getElementById('fname').value,
@@ -63,7 +95,7 @@
                 projectTool: document.getElementById('projectTool').value,
             }
 
-            fetch(`http://localhost:8001/S_Form?enrollment_No=${enrollment_No}`, {
+            fetch('http://localhost:8001/S_Form', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -456,16 +488,14 @@
         <!-- Achievement section Over -->
 
         <!-- Project -->
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="Projectfile" id="uploadProject">
-            <button type="submit" id="submit1">Upload File</button>
-        </form>
+            <input type="file" name="Projectfile" id="Projectfile">
+            <button onclick="handleFile()" >Upload File</button>
 
         <!-- Certificate -->
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <!-- <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="" id="uploadCertificate">
             <button type="submit">Upload File</button>
-        </form>
+        </form> -->
 
         <!-- save button-->
 

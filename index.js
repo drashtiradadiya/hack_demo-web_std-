@@ -14,7 +14,7 @@ const routes = require("./router/Student_signUp");
 const path = require("path");
 app.use(express.static("public")); //for css & image & js
 app.use(bodyParser.json()); // Parse JSON-encoded bodies
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));// Parse URL-encoded bodies
 //Connection
 
 mongoose.connect("mongodb://localhost:27017/StudentPannel").then((res) => {
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use("/", routes);
-app.post("/upload", upload.single("Projectfile"), handlerForUploadFile);
+app.post('/upload', upload.single('Projectfile'), handlerForUploadFile);
 app.listen(port, () => {
   console.log(`Server started at port:${port}`);
 });
