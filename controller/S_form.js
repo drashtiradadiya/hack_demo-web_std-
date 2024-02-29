@@ -2,6 +2,14 @@ const Student_signup = require("../models/student.js");
 const { MongoClient, ObjectId } = require("mongodb");
 const fs = require("fs");
 const path = require("path");
+const cloudinary = require("cloudinary").v2;
+
+
+cloudinary.config({
+  cloud_name: 'dagff8fw5',
+  api_key: '741714121227712',
+  api_secret: 'mAmOcMCAzh0oWPL5g_deCKfLtt8',
+})
 
 // Database Name
 const uri = "mongodb://localhost:27017";
@@ -11,19 +19,13 @@ const dbName = "StudentPannel";
 const client = new MongoClient(uri);
 
 async function handlerS_Form(req, res) {
-  // const enrollment_No = req.query;
-
-   // Find the user by enrollment_No
-  //  const user = await Student_signup.findOne({ enrollment_No });
-  //  console.log(user);
-  // console.log(enrollment_No);
-  // if (!user) {
-  //   return res.status(404).send('User not found');
-  // }
-   res.render('S_Form');
+  res.render('S_Form');
 }
 
 async function handlerS_FormInsertData(req, res) {
+  console.log('hey!');
+  const enrollment_No=req.query.enrollment_No;
+  console.log(enrollment_No)
   try {
     const {
       first_Name,
@@ -73,6 +75,7 @@ async function handlerS_FormInsertData(req, res) {
 
     // Define the new data to update
     const newData = {
+      profilePic: result1.url,
       first_Name,
       last_Name,
       email,
@@ -102,67 +105,75 @@ async function handlerS_FormInsertData(req, res) {
     };
 
     // Update the document with the new data
-    const result = await collection.updateOne(
+    const result = collection.updateOne(
       { _id: ObjectId.isValid(user.id) ? new ObjectId(user.id) : null }, // Filter for the document to update
       { $set: newData } // New data to add using $set operator
     );
 
     console.log(`${result.modifiedCount} document(s) updated`);
     res.send("Data updated successfully");
-  } catch (error) {
-    console.error("Error occurred while updating document:", error);
-    res.status(500).send("Internal Server Error");
-  } finally {
-    // Close the connection
-    await client.close();
   }
+
+  catch (error) {
+  console.error("Error occurred while updating document:", error);
+  res.status(500).send("Internal Server Error");
+} finally {
+  // Close the connection
+  await client.close();
+}
+
 }
 
 
 // window.localStorage.
-async function handlerForUploadFile  (req, res)  {
-  const enrollment_No= req.body.enrollmentNo;
-    console.log(enrollment_No);
-    const file = req.file;
-    // console.log(file)
+async function handlerForUploadFile(req, res) {
+  const enrollment_No = req.body.enrollmentNo;
+  console.log(enrollment_No);
+  const file = req.file;
+  // console.log(file)
   //   console.log("try1");
-    // console.log(req.body/);
-    // console.log(file);
- try {
-        // Find the user by email
-        const user = await Student_signup.findOne({enrollment_No});
-        console.log(user);
-        console.log("try2");
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        // Read file data
-        const data = fs.readFileSync(file.path, 'utf8');
-
-        // Update user document with file information
-        const filter = { _id: user.id }; // Assuming _id is the MongoDB ObjectId
-        const update = {
-            ProjectOriginalName: file.originalname,
-            Projectpath: file.path,
-            ProjectmimeType: file.mimetype,
-            data: data,
-        };
-        console.log("try3");
-        const options = { upsert: true };
-    
-        const result = await Student_signup.updateOne(filter, update, options);
-        console.log(`${result.modifiedCount} document(s) updated`);
-
-        res.status(200).json({ message: 'File uploaded successfully', result });
-    } catch (error) {
-        console.error('Error uploading file:', error);
-        res.status(500).json({ message: 'Internal Server Error', error });
-
+  // console.log(req.body/);
+  // console.log(file);
+  try {
+    // Find the user by email
+    const user = await Student_signup.findOne({ enrollment_No });
+    console.log(user);
+    console.log("try2");
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
+    // Read file data
+    const data = fs.readFileSync(file.path, 'utf8');
+
+    // Update user document with file information
+    const filter = { _id: user.id }; // Assuming _id is the MongoDB ObjectId
+    const update = {
+      ProjectOriginalName: file.originalname,
+      Projectpath: file.path,
+      ProjectmimeType: file.mimetype,
+      data: data,
+    };
+    console.log("try3");
+    const options = { upsert: true };
+
+    const result = await Student_signup.updateOne(filter, update, options);
+    console.log(`${result.modifiedCount} document(s) updated`);
+
+    res.status(200).json({ message: 'File uploaded successfully', result });
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    res.status(500).json({ message: 'Internal Server Error', error });
+
+  }
+}
+async function handlerUploadProfilePic(req, res) {
+ console.log("hiii");
+
 }
 
-module.exports = {
-  handlerS_FormInsertData,
-  handlerS_Form,
-  handlerForUploadFile,
-};
+  module.exports = {
+    handlerS_FormInsertData,
+    handlerS_Form,
+    handlerForUploadFile,
+    handlerUploadProfilePic
+  };

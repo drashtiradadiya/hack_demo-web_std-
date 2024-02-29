@@ -242,7 +242,7 @@ fieldset[disabled] .form-control {
 }
 
 .wizard-card {
-  margin-top: 100px;
+  margin-top: 20px;
   /* min-height: 410px; */
   border: none !important;
 }

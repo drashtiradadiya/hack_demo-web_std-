@@ -78,6 +78,9 @@ const studentSchema = new mongoose.Schema(
     experience:{
       type:Number,
     },
+    profilePic:{
+      type:String,
+    },
     degreeStatus:{
       type:String
     },

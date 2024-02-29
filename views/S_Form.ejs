@@ -34,36 +34,36 @@
     <script src="jquery-3.6.3.min.js"></script>
     <script>
 
-function handleFile() {
-    const fileInput = document.getElementById('Projectfile');
-    const file = fileInput.files[0];
+        function handleFile() {
+            const fileInput = document.getElementById('Projectfile');
+            const file = fileInput.files[0];
 
-    const formData = new FormData();
+            const formData = new FormData();
 
-    const enrollment_No =localStorage.getItem('enrollmentNo')
+            const enrollment_No = localStorage.getItem('enrollmentNo')
 
-    formData.append('Projectfile', file);
-    formData.append('enrollmentNo',enrollment_No)
+            formData.append('Projectfile', file);
+            formData.append('enrollmentNo', enrollment_No)
 
-    fetch('http://localhost:8001/upload', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+            fetch('http://localhost:8001/upload', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    // Handle successful response from the server
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    // Handle errors
+                });
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Server response:', data);
-        // Handle successful response from the server
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        // Handle errors
-    });
-}
 
         function validateForm(section) {
             const formData = {
@@ -93,7 +93,10 @@ function handleFile() {
                 projectName: document.getElementById('projectName').value,
                 projectDes: document.getElementById('projectDes').value,
                 projectTool: document.getElementById('projectTool').value,
+                
             }
+            
+        
 
             fetch('http://localhost:8001/S_Form', {
                 method: 'POST',
@@ -143,7 +146,88 @@ function handleFile() {
         document.getElementById('submi_skill').addEventListener("click", function () {
             validateForm('skill');
         });
+        document.getElementById('wizard-picture').addEventListener('click', function(event) {
+            uploadProfilePic();
+        })
 
+        function uploadProfilePic(){
+            const file = event.target.files[0];
+            const formimg={
+                profilePic: document.getElementById('wizard-picture'),
+            }
+            fetch('http://localhost:8001/upload-profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formimg),
+
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    console.log("fet")
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    window.location.href = `/index?enrollment_No=${enrollment_No}`;
+
+                    // Handle successful response from the server
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    console.log("error")
+                    // Handle errors
+                });
+            return true; 
+            
+        }
+        
+            // Assuming the form submission will proceed asynchronously
+        // document.getElementById('imageInput').addEventListener('change', function(event) {
+        //     const file = event.target.files[0];
+            
+        //     if (file) {
+        //         const reader = new FileReader();
+                
+        //         reader.onload = function(e) {
+        //             const previewImage = document.getElementById('wizard-picture');
+        //             previewImage.style.display = 'block';
+        //             previewImage.src = e.target.result;
+        //         };
+                
+        //         reader.readAsDataURL(file);
+
+        //         // Call a function to upload the image to Cloudinary
+        //         uploadImage(file);
+        //     }
+        // });
+
+        // function uploadImage(file) {
+        //     const formData = new FormData();
+        //     formData.append('file', file);
+        //     formData.append('upload_preset', 'your_cloudinary_upload_preset');
+
+        //     fetch('https://api.cloudinary.com/v1_1/your_cloud_nameupload', {
+        //         method: 'POST',
+        //         body: formData
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Failed to upload image');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log('Image uploaded successfully:', data);
+        //         // Handle the uploaded image data as needed
+        //     })
+        //     .catch(error => {
+        //         console.error('Error uploading image:', error);
+        //     });
+        // }
 
     </script>
 </head>
@@ -180,22 +264,26 @@ function handleFile() {
             <label for="profilePhoto" class="form-label">Upload Your Profile Photo *</label>
             <input type="file" class="form-control" id="profilePhoto" accept="image/*">
         </div> -->
-
+        <form action="localhost:8001/upload-profile" method="post" onsubmit="return uploadProfilePic()">
         <div class="card wizard-card" data-color="theme" id="wizardProfile">
             <div class="picture-container">
                 <div class="picture">
-                    <img src="/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="" />
-                    <input type="file" id="wizard-picture">
+                    <img src="/img/default-avatar.jpg" class="picture-src" id="profile-image" title="" />
+                    <input type="file" id="wizard-picture" name="profile-image" accept="image/*">
                 </div>
                 <h6 class="h5">Choose Picture</h6>
+                <button type="submit" class="btn btn-primary">Upload Image</button>
             </div>
         </div>
+    </form>
 
         <!-- About Section -->
-        <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('about')" class="row g-3"
-            id="about">
-            <fieldset class="border rounded-3 p-3 mt-5">
-                <legend class="float-none w-auto px-3">About:</legend>
+        <form action="localhost:8001/S_Form" method="post" onsubmit="return validateForm('about')" class="row g-3 mt-5"
+        id="about">
+        
+        <fieldset class="border rounded-3 p-3 mt-5">
+            
+            <legend class="float-none w-auto px-3">About:</legend>
                 <label for="name" class="form-label">Name *</label>
                 <div class="row g-3 mb-2">
                     <div class="col">
@@ -488,8 +576,8 @@ function handleFile() {
         <!-- Achievement section Over -->
 
         <!-- Project -->
-            <input type="file" name="Projectfile" id="Projectfile">
-            <button onclick="handleFile()" >Upload File</button>
+        <input type="file" name="Projectfile" id="Projectfile">
+        <button onclick="handleFile()">Upload File</button>
 
         <!-- Certificate -->
         <!-- <form action="/upload" method="post" enctype="multipart/form-data">
