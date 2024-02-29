@@ -413,7 +413,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary">Update</button>
                 </div>
 
             </div>
@@ -575,23 +575,34 @@
                     <div class="container">
                         <div class="  row " style="color:black;">
                             <div class="col-12 rounded  ">
-                                <label for="university/college/school"
-                                    class="form-label ">University/College/School</label>
+                                <label for="university/college/school" class="form-label ">University/College/School
+                                    *</label>
                                 <input type="text" class="form-control" placeholder="University/college/school"
                                     id="university/college/school">
                             </div>
 
                             <div class="col-6 rounded mt-3">
-                                <label for="completion year" class="form-label ">Completion Year </label>
+                                <label for="completion year" class="form-label ">Completion Year *</label>
                                 <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
                                     id="completionyear">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="cgpa" class="form-label ">CGPA</label>
+                                <label for="cgpa" class="form-label ">CGPA *</label>
                                 <input type="tel" max="10" class="form-control" placeholder="Enter CGPA out of 10"
                                     id="cgpa">
                             </div>
-                            <div class="col-6 row mt-3 ms-1">
+                            <div class="col-6 mt-3">
+                                <label for="degreeName" class="form-label">Degree *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Degree ---"
+                                    id="degreeName" required>
+                            </div>
+                            <div class="col-6 mt-3">
+
+                                <label for="branch" class="form-label">Branch *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Branch ---" id="branch"
+                                    required>
+                            </div>
+                            <div class="col-6 mt-3">
                                 <label for="status" class="form-label">Status*</label>
                                 <select id="status" class="form-select form-select-md col-12"
                                     aria-label=".form-select-md example"
@@ -599,6 +610,22 @@
                                     <option selected>Select Status</option>
                                     <option>Persuing</option>
                                     <option>Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mt-3">
+                                <label for="semester" class="form-label">Semester *</label>
+                                <select id="semester" class="form-select form-select-md col-12"
+                                    aria-label=".form-select-md example" style="height:35px;border:1px solid lightgray;"
+                                    required>
+                                    <option selected>--- Select Semester ---</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">3</option>
+                                    <option value="2">4</option>
+                                    <option value="2">5</option>
+                                    <option value="2">6</option>
+                                    <option value="2">7</option>
+                                    <option value="2">8</option>
                                 </select>
                             </div>
                         </div>

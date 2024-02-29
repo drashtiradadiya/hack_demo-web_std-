@@ -47,6 +47,8 @@
                 experience: document.getElementById('experience').value,
                 degreeName: document.getElementById('degreeName').value,
                 degreeStatus: document.getElementById('degreeStatus').value,
+                semester: document.getElementById('semester').value,
+                branch: document.getElementById('branch').value,
                 university: document.getElementById('university').value,
                 Completionyear: document.getElementById('year').value,
                 cgpa: document.getElementById('cgpa').value,
@@ -244,20 +246,43 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="row">
-                        <div class="col-12 mb-2"> <label for="degreeName" class="form-label">Degree *</label>
-                            <input type="text" class="form-control" placeholder="--- Enter Degree ---" id="degreeName"
-                                required>
+                        <div class="col-6 mb-2">
+                            <div><label for="degreeName" class="form-label">Degree *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Degree ---"
+                                    id="degreeName" required>
+                            </div>
+                            <div><label for="branch" class="form-label">Branch *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Branch ---" id="branch"
+                                    required>
+                            </div>
+
                         </div>
                         <div class="col-6 mb-2">
-                            <label for="degreeStatus" class="form-label">Status *</label>
-                            <select class="form-select form-select-md" aria-label=".form-select-md example"
-                                id="degreeStatus" required>
-                                <option selected>--- Select Status ---</option>
-                                <option value="1">Pursuing</option>
-                                <option value="2">Completed</option>
-                            </select>
+                            <div> <label for="semester" class="form-label">Semester *</label>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    id="semester" required>
+                                    <option selected>--- Select Semester ---</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">3</option>
+                                    <option value="2">4</option>
+                                    <option value="2">5</option>
+                                    <option value="2">6</option>
+                                    <option value="2">7</option>
+                                    <option value="2">8</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="degreeStatus" class="form-label">Status *</label>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    id="degreeStatus" required>
+                                    <option selected>--- Select Status ---</option>
+                                    <option value="1">Pursuing</option>
+                                    <option value="2">Completed</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-6 mb-2">
+                        <div class="col-12 mb-2">
                             <label for="university" class="form-label">University/School/College *</label>
                             <input type="text" class="form-control" placeholder="Enter University or College or School"
                                 id="university" required>
@@ -268,7 +293,7 @@
                                 id="year" required>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="cgpa" class="form-label">CGPA</label>
+                            <label for="cgpa" class="form-label">--- Enter CGPA out of 10 ---</label>
                             <input type="tel" class="form-control" maxlength="4" max="10" placeholder="Add your CGPA"
                                 id="cgpa">
                         </div>
