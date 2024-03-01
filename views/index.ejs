@@ -22,7 +22,7 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -31,8 +31,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link href="/css/style.css" rel="stylesheet">
-    <!-- <script src="./passVarible.js"></script> -->
-    <script src="/js/patch_index.js"></script>
+    
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51" style="background-color:#ffffff;">
@@ -164,8 +163,8 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('about')"
-                            id="about">
+                        <form action="localhost:8001/update" method="patch"
+                            onsubmit="return validateUpdateForm('about')" id="about">
                             <div class="col-6">
                                 <label for="fname" class="form-label ">First Name:</label>
                                 <input type="text" class="form-control" placeholder="First name" aria-label="First name"
@@ -203,7 +202,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit_about">Update</button>
+                    <button type="submit" class="btn btn-primary" id="submit_about">Update</button>
                 </div>
 
             </div>
@@ -383,24 +382,24 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Skill')"
-                            id="Skill">
+                        <form action="localhost:8001/update?enrollment_No=<%=user.enrollment_No%>" method="patch"
+                            onsubmit="return validateUpdateForm('Skill')" id="Skill">
                             <div class="col-6 rounded">
-                                <label for="skill" class="form-label ">Tools or Technological Skill*</label>
+                                <label for="tool" class="form-label ">Tools or Technological Skill*</label>
                                 <input type="text" class="form-control" placeholder="Ex. JavaScript" id="tool">
                             </div>
                             <div class="col-6 rounded">
-                                <label for="skill" class="form-label ">Interpersonal Skill*</label>
+                                <label for="interpersonal" class="form-label ">Interpersonal Skill*</label>
                                 <input type="text" class="form-control" placeholder="Ex. Communication"
                                     id="interpersonal">
                             </div>
                             <div class="col-6 rounded">
-                                <label for="percentage" class="form-label ">Percentage-tech*</label>
+                                <label for="percentage_tech" class="form-label ">Percentage-tech*</label>
                                 <input type="number" max="100" class="form-control" placeholder="Ex. 89"
                                     id="percentage_tech">
                             </div>
                             <div class="col-6 rounded">
-                                <label for="percentage" class="form-label ">Percentage-inter*</label>
+                                <label for="percentage_inter" class="form-label ">Percentage-inter*</label>
                                 <input type="number" max="100" class="form-control" placeholder="Ex. 89"
                                     id="percentage_inter">
                             </div>
@@ -410,7 +409,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit_Skills">Update</button>
+                    <button type="submit" class="btn btn-primary" id="submit_Skills">Update</button>
                 </div>
 
 
@@ -529,27 +528,27 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Experience')"
-                            id="Experience">
+                        <form action="localhost:8001/update?enrollment_No=<%=user.enrollment_No%>" method="patch"
+                            onsubmit="return validateUpdateForm('Exp')" id="Exp">
                             <div class="col-12 rounded">
-                                <label for="companyname" class="form-label ">Company Name*</label>
+                                <label for="company" class="form-label ">Company Name*</label>
                                 <input type="text" class="form-control" placeholder="Company Name" id="company">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="percentage" class="form-label ">Starting Year</label>
+                                <label for="startDate" class="form-label ">Starting Year</label>
                                 <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
                                     id="startDate">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="percentage" class="form-label ">Ending Year</label>
+                                <label for="endDate" class="form-label ">Ending Year</label>
                                 <input type="number" min="1000" class="form-control" placeholder="Ex.2000" id="endDate">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="skill" class="form-label ">Job type</label>
+                                <label for="jobType" class="form-label ">Job type</label>
                                 <input type="text" class="form-control" placeholder="Ex.Webdevloper" id="jobType">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="experience" class="form-label ">Experience(in year)</label>
+                                <label for="experienceCompany" class="form-label ">Experience(in year)</label>
                                 <input type="text" class="form-control" placeholder="Ex.2002" id="experienceCompany">
                             </div>
                         </form>
@@ -558,7 +557,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit_exp">Update</button>
+                    <button type="submit" class="btn btn-primary" id="submit_exp">Update</button>
                 </div>
 
             </div>
@@ -575,17 +574,17 @@
                 <div class="modal-body px-3">
                     <div class="container">
                         <div class="  row " style="color:black;">
-                            <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Degree')"
-                                id="Degree">
+                            <form action="localhost:8001/update?enrollment_No=<%=user.enrollment_No%>" method="patch"
+                                onsubmit="return validateUpdateForm('Degree')" id="Degree">
                                 <div class="col-12 rounded  ">
-                                    <label for="university/college/school"
+                                    <label for="university"
                                         class="form-label ">University/College/School</label>
                                     <input type="text" class="form-control" placeholder="University/college/school"
-                                        id="university/college/school">
+                                        id="university">
                                 </div>
 
                                 <div class="col-6 rounded mt-3">
-                                    <label for="completion year" class="form-label ">Completion Year </label>
+                                    <label for="completionyear" class="form-label ">Completion Year </label>
                                     <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
                                         id="completionyear">
                                 </div>
@@ -611,7 +610,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"id="submit_Edu">Update</button>
+                    <button type="submit" class="btn btn-primary" id="submit_Edu">Update</button>
                 </div>
 
             </div>
@@ -712,8 +711,8 @@
                 <div class="modal-body px-3">
                     <div class="container">
                         <div class="  row " style="color:black;">
-                            <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Achievement')"
-                                id="Achievement">
+                            <form action="localhost:8001/update" method="patch"
+                                onsubmit="return validateUpdateForm('Achievement')" id="Achievement">
                                 <div class="col-12 rounded  ">
                                     <label for="certificate" class="form-label ">Certificate</label>
                                     <input type="file" class="form-control" placeholder="Certificate uplode"
@@ -724,14 +723,14 @@
                                     <label for="domain" class="form-label ">Domain</label>
                                     <input type="Text" class="form-control" placeholder="Enter your Domain" id="domain">
                                 </div>
-                                </form>
+                            </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit_Achievement">Update</button>
+                    <button type="submit" class="btn btn-primary" id="submit_Achievement">Update</button>
                 </div>
 
             </div>
@@ -766,7 +765,8 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-outline-dark px-0 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+  
+  
 
     <!-- JavaScript Libraries -->
     <!-- JavaScript Libraries -->
@@ -780,10 +780,129 @@
     <script src="/js/lightbox.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="/mail/jqBootstrapValidation.min.js"></script>
-    <script src="/mail/contact.js"></script>
+    <script src="/js/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/js/mail/contact.js"></script>
 
     <!-- Template Javascript -->
+    <script>
+        function handleFile() {
+            const fileInput = document.getElementById('Projectfile');
+            const file = fileInput.files[0];
+
+            const formData = new FormData();
+
+            const enrollment_No = localStorage.getItem('enrollmentNo')
+
+            formData.append('Projectfile', file);
+            formData.append('enrollmentNo', enrollment_No)
+
+            fetch(`http://localhost:8001/upload?enrollment_No=${enrollment_No}`, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    // Handle successful response from the server
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    // Handle errors
+                });
+        }
+        function validateUpdateForm(section) {
+          
+           
+            const formData = {
+                first_Name: document.getElementById('fname').value,
+                last_Name: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                date_of_birth: document.getElementById('dob').value,
+                phone_no: document.getElementById('phone_no').value,
+                address: document.getElementById('address').value,
+                experience: document.getElementById('experience').value,
+                tool: document.getElementById('tool').value,
+                interpersonal: document.getElementById('interpersonal').value,
+                percentage_inter: document.getElementById('percentage_inter').value,
+                percentage_tech: document.getElementById('percentage_tech').value,
+                degreeStatus: document.getElementById('status').value,
+                university: document.getElementById('university').value,
+                Completionyear: document.getElementById('completionyear').value,
+                cgpa: document.getElementById('cgpa').value,
+                // percentage: document.getElementById('percentage').value,
+                companyName: document.getElementById('company').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                jobType: document.getElementById('jobType').value,
+                experienceCompany: document.getElementById('experienceCompany').value,
+                certificate: document.getElementById('certificate').value,
+                domain: document.getElementById('domain').value,
+
+
+
+                // projectName: document.getElementById('projectName').value,
+                // projectDes: document.getElementById('projectDes').value,
+                // projectTool: document.getElementById('projectTool').value, 
+            }
+
+            const enrollment_No = localStorage.getItem('enrollmentNo');
+            console.log(enrollment_No);
+            try {
+                    fetch(`http://localhost:8001/update?enrollment_No=${enrollment_No}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Server response:', data);
+                        console.log('Data updated successfully:', data);
+                        // Handle successful response from the server
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        console.error('There was a problem with the fetch operation:', error);
+                        // Handle errors
+                    });
+                } catch (error) {
+                    console.error('Error occurred:', error);
+                }
+            return true; // Assuming the form submission will proceed asynchronously\
+
+        }
+        $(document).ready(function () {
+            // Event listeners for form submission
+            $('#submit_about').click(function () {
+                validateUpdateForm('about');
+            });
+            $('#submit_Edu').click(function () {
+                validateUpdateForm('Degree');
+            });
+            $('#submit_exp').click(function () {
+                validateUpdateForm('Exp');
+            });
+         
+            $('#submit_Achievment').click(function () {
+                validateUpdateForm('Achievment');
+            });
+            $('#submit_Skills').click(function () {
+                validateUpdateForm('Skill');
+            });
+          
+        })
+    </script>
     <script src="/js/mainIndex_page.js"></script>
 </body>
 

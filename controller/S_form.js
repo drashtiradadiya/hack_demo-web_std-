@@ -11,21 +11,18 @@ cloudinary.config({
   api_secret: 'mAmOcMCAzh0oWPL5g_deCKfLtt8',
 })
 
-// Database Name
-const uri = "mongodb://localhost:27017";
-const dbName = "StudentPannel";
+const uri = "mongodb://localhost:27017/StudentPannel";
 
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client1 = new MongoClient(uri);
 
 async function handlerS_Form(req, res) {
-  res.render('S_Form');
+  const enrollment_No=req.query.enrollment_No;
+  res.render('S_Form',{enrollment_No});
 }
 
 async function handlerS_FormInsertData(req, res) {
-  console.log('hey!');
-  const enrollment_No=req.query.enrollment_No;
-  console.log(enrollment_No)
+  const enrollment_No = req.query.enrollment_No;
   try {
     const {
       first_Name,
@@ -54,28 +51,17 @@ async function handlerS_FormInsertData(req, res) {
       projectName,
       projectDes,
       projectTool,
+      
     } = req.body;
-
     // Find the user by email
-    const user = await Student_signup.findOne({ email });
+    const user = await Student_signup.findOne({enrollment_No});
 
     if (!user) {
       return res.status(404).send("User not found");
     }
 
-    // Connect to the MongoClient
-    await client.connect();
-
-    // Get the database
-    const db = client.db(dbName);
-    console.log(`Connected to database: ${dbName}`);
-
-    // Define the collection
-    const collection = db.collection("student_infos");
-
     // Define the new data to update
     const newData = {
-      profilePic: result1.url,
       first_Name,
       last_Name,
       email,
@@ -103,12 +89,12 @@ async function handlerS_FormInsertData(req, res) {
       projectDes,
       projectTool,
     };
-
     // Update the document with the new data
-    const result = collection.updateOne(
+    const result = await client1.db('StudentPannel').collection('student_infos').updateOne(
       { _id: ObjectId.isValid(user.id) ? new ObjectId(user.id) : null }, // Filter for the document to update
       { $set: newData } // New data to add using $set operator
     );
+
 
     console.log(`${result.modifiedCount} document(s) updated`);
     res.send("Data updated successfully");
@@ -117,10 +103,7 @@ async function handlerS_FormInsertData(req, res) {
   catch (error) {
   console.error("Error occurred while updating document:", error);
   res.status(500).send("Internal Server Error");
-} finally {
-  // Close the connection
-  await client.close();
-}
+} 
 
 }
 
@@ -130,15 +113,9 @@ async function handlerForUploadFile(req, res) {
   const enrollment_No = req.body.enrollmentNo;
   console.log(enrollment_No);
   const file = req.file;
-  // console.log(file)
-  //   console.log("try1");
-  // console.log(req.body/);
-  // console.log(file);
   try {
     // Find the user by email
     const user = await Student_signup.findOne({ enrollment_No });
-    console.log(user);
-    console.log("try2");
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -153,7 +130,6 @@ async function handlerForUploadFile(req, res) {
       ProjectmimeType: file.mimetype,
       data: data,
     };
-    console.log("try3");
     const options = { upsert: true };
 
     const result = await Student_signup.updateOne(filter, update, options);
@@ -167,7 +143,6 @@ async function handlerForUploadFile(req, res) {
   }
 }
 async function handlerUploadProfilePic(req, res) {
- console.log("hiii");
 
 }
 

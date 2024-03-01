@@ -11,10 +11,7 @@ function handlerStudentpageLogin(req, res) {
 const handlerStudentDataFromLogin = async(req,res) => {
     try {
         const {email, enrollment_No, password} = req.body;
-       console.log(enrollment_No);
-       const user = await Student_signup.findOne({enrollment_No: enrollment_No});
-
-        console.log(user)
+       const user = await Student_signup.findOne({ enrollment_No});
         if(!user) {
             return res.status(401).json(
                 {message: 'User not find'}

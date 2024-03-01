@@ -28,7 +28,6 @@
             //     alert('Please fill in all required fields.');
             //     return false;
             // }
-
             // Send the data to the server
             if (enrollment_No.length === 11 || enrollment_No.length === 9) {
                 fetch('http://localhost:8001/login', {
@@ -41,7 +40,8 @@
                     .then((res => {
                         // if(res.status === 200) {
                         console.log(res.status)
-                        window.localStorage.setItem('enrollmentNo', enrollment_No)
+                        localStorage.setItem('enrollmentNo', enrollment_No)
+
                         window.location.href = `/index?enrollment_No=${enrollment_No}`;
                         // } 
                         // else {

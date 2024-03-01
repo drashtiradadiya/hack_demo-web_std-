@@ -10,8 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
@@ -31,211 +31,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <script src="jquery-3.6.3.min.js"></script>
-    <script>
-
-        function handleFile() {
-            const fileInput = document.getElementById('Projectfile');
-            const file = fileInput.files[0];
-
-            const formData = new FormData();
-
-            const enrollment_No = localStorage.getItem('enrollmentNo')
-
-            formData.append('Projectfile', file);
-            formData.append('enrollmentNo', enrollment_No)
-
-            fetch('http://localhost:8001/upload', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Server response:', data);
-                    // Handle successful response from the server
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    // Handle errors
-                });
-        }
-
-        function validateForm(section) {
-            const formData = {
-                first_Name: document.getElementById('fname').value,
-                last_Name: document.getElementById('lname').value,
-                email: document.getElementById('email').value,
-                date_of_birth: document.getElementById('dob').value,
-                phone_no: document.getElementById('phone_no').value,
-                address: document.getElementById('address').value,
-                city: document.getElementById('city').value,
-                state: document.getElementById('state').value,
-                zip: document.getElementById('zip').value,
-                experience: document.getElementById('experience').value,
-                degreeName: document.getElementById('degreeName').value,
-                degreeStatus: document.getElementById('degreeStatus').value,
-                university: document.getElementById('university').value,
-                Completionyear: document.getElementById('year').value,
-                cgpa: document.getElementById('cgpa').value,
-                percentage: document.getElementById('percentage').value,
-                companyName: document.getElementById('companyName').value,
-                experienceCompany: document.getElementById('experienceCompany').value,
-                jobType: document.getElementById('jobType').value,
-                startDate: document.getElementById('startDate').value,
-                endDate: document.getElementById('endDate').value,
-                tool: document.getElementById('tool').value,
-                interpersonal: document.getElementById('interpersonal').value,
-                projectName: document.getElementById('projectName').value,
-                projectDes: document.getElementById('projectDes').value,
-                projectTool: document.getElementById('projectTool').value,
-                
-            }
-            
-        
-
-            fetch('http://localhost:8001/S_Form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData),
-
-
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    console.log("fet")
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Server response:', data);
-                    window.location.href = `/index?enrollment_No=${enrollment_No}`;
-
-                    // Handle successful response from the server
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    console.log("error")
-                    // Handle errors
-                });
-            return true; // Assuming the form submission will proceed asynchronously
-
-        }
-        document.getElementById('submit_about').addEventListener("click", function () {
-            validateForm('about');
-        });
-        document.getElementById('submit_education').addEventListener("click", function () {
-            validateForm('education');
-        });
-        document.getElementById('submit_job').addEventListener("click", function () {
-            validateForm('job');
-        });
-        document.getElementById('submit_achievment').addEventListener("click", function () {
-            validateForm('achievment');
-        });
-        document.getElementById('submi_project').addEventListener("click", function () {
-            validateForm('project');
-        });
-        document.getElementById('submi_skill').addEventListener("click", function () {
-            validateForm('skill');
-        });
-        document.getElementById('wizard-picture').addEventListener('click', function(event) {
-            uploadProfilePic();
-        })
-
-        function uploadProfilePic(){
-            const file = event.target.files[0];
-            const formimg={
-                profilePic: document.getElementById('wizard-picture'),
-            }
-            fetch('http://localhost:8001/upload-profile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formimg),
-
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    console.log("fet")
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Server response:', data);
-                    window.location.href = `/index?enrollment_No=${enrollment_No}`;
-
-                    // Handle successful response from the server
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    console.log("error")
-                    // Handle errors
-                });
-            return true; 
-            
-        }
-        
-            // Assuming the form submission will proceed asynchronously
-        // document.getElementById('imageInput').addEventListener('change', function(event) {
-        //     const file = event.target.files[0];
-            
-        //     if (file) {
-        //         const reader = new FileReader();
-                
-        //         reader.onload = function(e) {
-        //             const previewImage = document.getElementById('wizard-picture');
-        //             previewImage.style.display = 'block';
-        //             previewImage.src = e.target.result;
-        //         };
-                
-        //         reader.readAsDataURL(file);
-
-        //         // Call a function to upload the image to Cloudinary
-        //         uploadImage(file);
-        //     }
-        // });
-
-        // function uploadImage(file) {
-        //     const formData = new FormData();
-        //     formData.append('file', file);
-        //     formData.append('upload_preset', 'your_cloudinary_upload_preset');
-
-        //     fetch('https://api.cloudinary.com/v1_1/your_cloud_nameupload', {
-        //         method: 'POST',
-        //         body: formData
-        //     })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error('Failed to upload image');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log('Image uploaded successfully:', data);
-        //         // Handle the uploaded image data as needed
-        //     })
-        //     .catch(error => {
-        //         console.error('Error uploading image:', error);
-        //     });
-        // }
-
-    </script>
+    <!-- <script src="/jquery-3.6.3.min.js"></script> -->
+   
 </head>
 
 <body>
     <!-- Navbar Start -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
-        <a href="index.ejs" class="navbar-brand ml-lg-3">
+        <a href="http://localhost:8001/index?enrollment_No=${enrollment_No}" class="navbar-brand ml-lg-3">
             <h1 class="m-0 display-5"><span class="text-primary">Student Portfolio </span>Hub</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -265,14 +68,14 @@
             <input type="file" class="form-control" id="profilePhoto" accept="image/*">
         </div> -->
         <form action="localhost:8001/upload-profile" method="post" onsubmit="return uploadProfilePic()">
-        <div class="card wizard-card" data-color="theme" id="wizardProfile">
+        <div class="card wizard-card" data-color="theme" id="wizard_Profile">
             <div class="picture-container">
                 <div class="picture">
                     <img src="/img/default-avatar.jpg" class="picture-src" id="profile-image" title="" />
                     <input type="file" id="wizard-picture" name="profile-image" accept="image/*">
                 </div>
                 <h6 class="h5">Choose Picture</h6>
-                <button type="submit" class="btn btn-primary">Upload Image</button>
+                <button type="submit" class="btn btn-primary" id="wizard_Profile">Upload Image</button>
             </div>
         </div>
     </form>
@@ -597,7 +400,211 @@
     <script src="/assets/js/paper-bootstrap-wizard.js"></script>
     <script src="/assets/js/jquery.validate.min.js"></script>
     <script src="/S_Form.js"></script>
+    <script>
 
+        
+              function handleFile() {
+            const fileInput = document.getElementById('Projectfile');
+            const file = fileInput.files[0];
+
+            const formData = new FormData();
+
+            const enrollment_No = localStorage.getItem('enrollmentNo')
+
+            formData.append('Projectfile', file);
+            formData.append('enrollmentNo', enrollment_No)
+
+            fetch(`http://localhost:8001/upload?enrollment_No=${enrollment_No}`, {
+                method: 'POST',
+                body: formData
+            })  .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    // Handle successful response from the server
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    // Handle errors
+                });
+        }
+
+        function validateForm(section) {
+            const formData = {
+                first_Name: document.getElementById('fname').value,
+                last_Name: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                date_of_birth: document.getElementById('dob').value,
+                phone_no: document.getElementById('phone_no').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                experience: document.getElementById('experience').value,
+                degreeName: document.getElementById('degreeName').value,
+                degreeStatus: document.getElementById('degreeStatus').value,
+                university: document.getElementById('university').value,
+                Completionyear: document.getElementById('year').value,
+                cgpa: document.getElementById('cgpa').value,
+                percentage: document.getElementById('percentage').value,
+                companyName: document.getElementById('companyName').value,
+                experienceCompany: document.getElementById('experienceCompany').value,
+                jobType: document.getElementById('jobType').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                tool: document.getElementById('tool').value,
+                interpersonal: document.getElementById('interpersonal').value,
+                projectName: document.getElementById('projectName').value,
+                projectDes: document.getElementById('projectDes').value,
+                projectTool: document.getElementById('projectTool').value,
+            
+                
+            }
+                const enrollment_No = localStorage.getItem('enrollmentNo');
+                console.log(enrollment_No);
+        
+
+            fetch(`http://localhost:8001/S_Form?enrollment_No=${enrollment_No}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+
+
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // console.log("fet")
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    
+
+                    // Handle successful response from the server
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    console.log("error")
+                    // Handle errors
+                });
+            return true; // Assuming the form submission will proceed asynchronously
+
+        }
+        $(document).ready(function () {
+            // Event listeners for form submission
+            $('#submit_about').click(function () {
+                validateForm('about');
+            });
+            $('#submit_education').click(function () {
+                validateForm('education');
+            });
+            $('#submit_job').click(function () {
+                validateForm('job');
+            });
+            $('#submit_achievment').click(function () {
+                validateForm('achievment');
+            });
+            $('#submi_project').click(function () {
+                validateForm('project');
+            });
+            $('#submi_skill').click(function () {
+                validateForm('skill');
+            });
+            $('#wizard_picture').click(function (event) {
+                uploadProfilePic();
+            });
+
+            // Other code as needed
+        });
+
+        // function uploadProfilePic(){
+        //     const file = event.target.files[0];
+        //     const formimg={
+        //         profilePic: document.getElementById('wizard-picture'),
+        //     }
+        //     fetch('http://localhost:8001/upload-profile', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(formimg),
+
+        //     })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             console.log("fet")
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             console.log('Server response:', data);
+        //             window.location.href = `/index?enrollment_No=${enrollment_No}`;
+
+        //             // Handle successful response from the server
+        //         })
+        //         .catch(error => {
+        //             console.error('There was a problem with the fetch operation:', error);
+        //             console.log("error")
+        //             // Handle errors
+        //         });
+        //     return true; 
+            
+        // }
+        
+            // Assuming the form submission will proceed asynchronously
+        // document.getElementById('imageInput').addEventListener('change', function(event) {
+        //     const file = event.target.files[0];
+            
+        //     if (file) {
+        //         const reader = new FileReader();
+                
+        //         reader.onload = function(e) {
+        //             const previewImage = document.getElementById('wizard-picture');
+        //             previewImage.style.display = 'block';
+        //             previewImage.src = e.target.result;
+        //         };
+                
+        //         reader.readAsDataURL(file);
+
+        //         // Call a function to upload the image to Cloudinary
+        //         uploadImage(file);
+        //     }
+        // });
+
+        // function uploadImage(file) {
+        //     const formData = new FormData();
+        //     formData.append('file', file);
+        //     formData.append('upload_preset', 'your_cloudinary_upload_preset');
+
+        //     fetch('https://api.cloudinary.com/v1_1/your_cloud_nameupload', {
+        //         method: 'POST',
+        //         body: formData
+        //     })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Failed to upload image');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log('Image uploaded successfully:', data);
+        //         // Handle the uploaded image data as needed
+        //     })
+        //     .catch(error => {
+        //         console.error('Error uploading image:', error);
+        //     });
+        // }
+
+    </script>
 </body>
 
 </html>

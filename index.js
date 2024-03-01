@@ -8,7 +8,8 @@ const ejs = require("ejs");
 const multer = require("multer"); // Specify upload directory
 // const cloudinary = require("./cloudinary")
 const fileUpload = require('express-fileupload')
-const fs = require('fs')
+const fs = require('fs');
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
