@@ -10,6 +10,19 @@ const dbName = "StudentPannel";
 // Create a new MongoClient
 const client = new MongoClient(uri);
 
+async function handlerS_Form(req, res) {
+  // const enrollment_No = req.query;
+
+  // Find the user by enrollment_No
+  //  const user = await Student_signup.findOne({ enrollment_No });
+  //  console.log(user);
+  // console.log(enrollment_No);
+  // if (!user) {
+  //   return res.status(404).send('User not found');
+  // }
+  res.render("S_Form");
+}
+
 async function handlerS_FormInsertData(req, res) {
   try {
     const {
@@ -39,6 +52,8 @@ async function handlerS_FormInsertData(req, res) {
       projectName,
       projectDes,
       projectTool,
+      semester,
+      branch,
     } = req.body;
 
     // Find the user by email
@@ -85,7 +100,9 @@ async function handlerS_FormInsertData(req, res) {
       interpersonal,
       projectName,
       projectDes,
-      projectTool,
+      //projectTool,
+      semester,
+      branch,
     };
 
     // Update the document with the new data
@@ -105,25 +122,23 @@ async function handlerS_FormInsertData(req, res) {
   }
 }
 
-function handlerS_Form(req, res) {
-  return res.render("S_Form");
-}
-
+// window.localStorage.
 async function handlerForUploadFile(req, res) {
-  // const { email } = req.body;
+  const enrollment_No = req.body.enrollmentNo;
+  console.log(enrollment_No);
   const file = req.file;
-  console.log("try1");
-  console.log(req.body);
-  console.log(file);
+  // console.log(file)
+  //   console.log("try1");
+  // console.log(req.body/);
+  // console.log(file);
   try {
     // Find the user by email
-    const user = await Student_signup.findOne({ enrollNo });
+    const user = await Student_signup.findOne({ enrollment_No });
     console.log(user);
     console.log("try2");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     // Read file data
     const data = fs.readFileSync(file.path, "utf8");
 

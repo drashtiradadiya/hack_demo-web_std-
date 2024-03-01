@@ -57,6 +57,84 @@ const studentSchema = new mongoose.Schema(
     data: {
       type: Buffer,
     },
+    date_of_birth: {
+      type: Number,
+    },
+    phone_no: {
+      type: Number,
+    },
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    zip: {
+      type: Number,
+    },
+    experience: {
+      type: Number,
+    },
+    degreeStatus: {
+      type: String,
+    },
+    degreeName: {
+      type: String,
+    },
+    university: {
+      type: String,
+    },
+    Completionyear: {
+      type: Number,
+    },
+    cgpa: {
+      type: Number,
+    },
+    percentage: {
+      type: Number,
+    },
+    companyName: {
+      type: String,
+    },
+    experienceCompany: {
+      type: Number,
+    },
+    jobType: {
+      type: String,
+    },
+    startDate: {
+      type: Number,
+    },
+    endDate: {
+      type: Number,
+    },
+    tool: {
+      type: String,
+    },
+    interpersonal: {
+      type: String,
+    },
+    projectName: {
+      type: String,
+    },
+    projectDes: {
+      type: String,
+    },
+    // projectTool: {
+    //   type: [String], // Assuming projectTool is an array of strings
+    //   default: [],
+    //   // name: String,
+    //   // selectedOptions: [String],
+    // },
+    semester: {
+      type: Number,
+    },
+    branch: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

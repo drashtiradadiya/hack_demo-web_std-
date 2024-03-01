@@ -30,7 +30,7 @@
             // }
 
             // Send the data to the server
-            if (enrollment_No.toString().length === 11 || enrollment_No.toString().length === 9) {
+            if (enrollment_No.length === 11 || enrollment_No.length === 9) {
                 fetch('http://localhost:8001/login', {
                     method: 'POST',
                     headers: {
@@ -38,22 +38,16 @@
                     },
                     body: JSON.stringify({ email, enrollment_No, password })
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Server response:', data);
-
-                        window.location.href = `/index?enrollment_No=${enrollment_No}`;    
-                        // Handle successful response from the server
-                    })
-                    .catch(error => {
-                        console.error('There was a problem with the fetch operation:', error);
-                        // Handle errors
-                    });
+                    .then((res => {
+                        // if(res.status === 200) {
+                        console.log(res.status)
+                        window.localStorage.setItem('enrollmentNo', enrollment_No)
+                        window.location.href = `/index?enrollment_No=${enrollment_No}`;
+                        // } 
+                        // else {
+                        // alert('Invalid data')
+                        // }
+                    }))
             }
             else {
                 alert('Please Enter Valid Enrollment No.');
@@ -81,14 +75,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="enrollment_No" class="form-label">Enrollment Number</label>
-                    <input type="tel" maxlength="11" class="form-control" id="enrollment_No" value=""
-                        placeholder="Enter Enrollment No" autocomplete="enrollment_no" required>
+                    <input type="number" maxlength="11" class="form-control" id="enrollment_No" value=""
+                        placeholder="Enter Enrollment No" name="enrollment_No" autocomplete="enrollment_no" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="" id="password" placeholder="Enter Password"
-                        required>
+                    <input type="password" class="form-control" name="" id="password" name="password"
+                        placeholder="Enter Password" required>
                 </div>
                 <center>
                     <button class="btn button w-100" type="submit" id="submit">Login</button>
@@ -105,4 +99,5 @@
     <script>
         var body = document.body;
     </script>
+
 </html>

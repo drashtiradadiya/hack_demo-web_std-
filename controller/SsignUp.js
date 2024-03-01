@@ -7,7 +7,6 @@ function handlerStudentpageSignUp(req, res) {
 }
 async function handlerIndex(req, res) {
   const { enrollment_No } = req.query;
-  console.log(enrollment_No);
 
   // Find the user by enrollment_No
   const user = await Student_signup.findOne({ enrollment_No });
@@ -15,7 +14,6 @@ async function handlerIndex(req, res) {
   if (!user) {
     return res.status(404).send("User not found");
   }
-  console.log(user);
   res.render("index", { user });
 }
 
@@ -29,7 +27,6 @@ const handlerStudentDataFromSignUp = async (req, res) => {
     enrollment_No,
   } = await req.body;
   const ip = req.ip;
-  // console.log(first_Name);
   await Student_signup.create({
     first_Name,
     last_Name,
