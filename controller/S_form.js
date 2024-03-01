@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
 
-
 cloudinary.config({
   cloud_name: 'dagff8fw5',
   api_key: '741714121227712',
@@ -41,12 +40,14 @@ async function handlerS_FormInsertData(req, res) {
       Completionyear,
       cgpa,
       percentage,
+      percentage_tech,
+      percentage_inter,
       companyName,
       experienceCompany,
       jobType,
       startDate,
       endDate,
-      tool,
+      tools,
       interpersonal,
       projectName,
       projectDes,
@@ -78,16 +79,20 @@ async function handlerS_FormInsertData(req, res) {
       Completionyear,
       cgpa,
       percentage,
+      percentage_tech,
+      percentage_inter,
       companyName,
       experienceCompany,
       jobType,
       startDate,
       endDate,
-      tool,
+      tools,
       interpersonal,
       projectName,
       projectDes,
       projectTool,
+      semester,
+      branch,
     };
     // Update the document with the new data
     const result = await client1.db('StudentPannel').collection('student_infos').updateOne(
@@ -107,7 +112,6 @@ async function handlerS_FormInsertData(req, res) {
 
 }
 
-
 // window.localStorage.
 async function handlerForUploadFile(req, res) {
   const enrollment_No = req.body.enrollmentNo;
@@ -117,10 +121,10 @@ async function handlerForUploadFile(req, res) {
     // Find the user by email
     const user = await Student_signup.findOne({ enrollment_No });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
     // Read file data
-    const data = fs.readFileSync(file.path, 'utf8');
+    const data = fs.readFileSync(file.path, "utf8");
 
     // Update user document with file information
     const filter = { _id: user.id }; // Assuming _id is the MongoDB ObjectId
@@ -135,20 +139,19 @@ async function handlerForUploadFile(req, res) {
     const result = await Student_signup.updateOne(filter, update, options);
     console.log(`${result.modifiedCount} document(s) updated`);
 
-    res.status(200).json({ message: 'File uploaded successfully', result });
+    res.status(200).json({ message: "File uploaded successfully", result });
   } catch (error) {
-    console.error('Error uploading file:', error);
-    res.status(500).json({ message: 'Internal Server Error', error });
-
+    console.error("Error uploading file:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
   }
 }
 async function handlerUploadProfilePic(req, res) {
 
 }
 
-  module.exports = {
-    handlerS_FormInsertData,
-    handlerS_Form,
-    handlerForUploadFile,
-    handlerUploadProfilePic
-  };
+module.exports = {
+  handlerS_FormInsertData,
+  handlerS_Form,
+  handlerForUploadFile,
+  handlerUploadProfilePic,
+};

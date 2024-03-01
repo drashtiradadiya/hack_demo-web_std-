@@ -57,78 +57,91 @@ const studentSchema = new mongoose.Schema(
     data: {
       type: Buffer,
     },
-    date_of_birth:{
-      type:Number,
+    date_of_birth: {
+      type: Number,
     },
-    phone_no:{
-        type:Number,
+    phone_no: {
+      type: Number,
     },
-    address:{
-      type:String
+    address: {
+      type: String,
     },
-    city:{
-      type:String
+    city: {
+      type: String,
     },
-    state:{
-      type:String
+    state: {
+      type: String,
     },
-    zip:{
-      type:Number,
+    zip: {
+      type: Number,
     },
-    experience:{
-      type:Number,
+    experience: {
+      type: Number,
     },
-    profilePic:{
-      type:String,
+    degreeStatus: {
+      type: String,
     },
-    degreeStatus:{
-      type:String
+    degreeName: {
+      type: String,
     },
-    degreeName:{
-      type:String
+    university: {
+      type: String,
     },
-    university:{
-      type:String
-    }, 
-     Completionyear:{
-      type:Number
-    },  
-    cgpa:{
-      type:Number
-    },  
-    percentage:{
-      type:Number
-    },  
-    companyName:{
-      type:String
+    Completionyear: {
+      type: Number,
     },
-    experienceCompany:{
-      type:Number
-    },  
-    jobType:{
-      type:String
+    cgpa: {
+      type: Number,
     },
-    startDate:{
-      type:Number
-    }, 
-    endDate:{
-      type:Number
-    }, 
-    tool:{
-      type:String
-    }, 
-    interpersonal:{
-      type:String
-    }, 
-    projectName:{
-      type:String
-    }, 
-    projectDes:{
-      type:String
+    percentage: {
+      type: Number,
     },
-    projectTool:{
-      type:String
-    }
+    companyName: {
+      type: String,
+    },
+    experienceCompany: {
+      type: Number,
+    },
+    jobType: {
+      type: String,
+    },
+    startDate: {
+      type: Number,
+    },
+    endDate: {
+      type: Number,
+    },
+    interpersonal: {
+      type: String,
+    },
+    projectName: {
+      type: String,
+    },
+    projectDes: {
+      type: String,
+    },
+    projectTool: {
+      // type: [String], // Assuming projectTool is an array of strings
+      // default: [],
+      type: String,
+      // name: String,
+      // selectedOptions: [String],
+    },
+    semester: {
+      type: Number,
+    },
+    branch: {
+      type: String,
+    },
+    percentage_inter: {
+      type: Number,
+    },
+    percentage_tech: {
+      type: Number,
+    },
+    tools: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

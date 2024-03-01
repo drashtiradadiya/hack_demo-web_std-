@@ -31,8 +31,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <!-- <script src="/jquery-3.6.3.min.js"></script> -->
-   
+
 </head>
 
 <body>
@@ -78,6 +77,7 @@
                 <button type="submit" class="btn btn-primary" id="wizard_Profile">Upload Image</button>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
     </form>
 
         <!-- About Section -->
@@ -136,9 +136,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-2 mb-2">
-                    <label for="experience" class="form-label">Experience (in years)</label>
-                    <input type="number" maxlength="2" class="form-control" id="experience">
+                <div class="col-12 mb-2">
+                    <label for="jobType" class="form-label">Job Type *</label>
+                    <input type="text" class="form-control" placeholder="Enter Job-Type (Ex- Web Developer)"
+                        id="jobType">
                 </div>
                 <div class="col-12 mb-2 save_btn">
                     <button type="submit" class="btn btn-primary mt-3 submit" id="submit_about">Save Details</button>
@@ -167,20 +168,43 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="row">
-                        <div class="col-12 mb-2"> <label for="degreeName" class="form-label">Degree *</label>
-                            <input type="text" class="form-control" placeholder="--- Enter Degree ---" id="degreeName"
-                                required>
+                        <div class="col-6 mb-2">
+                            <div><label for="degreeName" class="form-label">Degree *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Degree ---"
+                                    id="degreeName" required>
+                            </div>
+                            <div><label for="branch" class="form-label">Branch *</label>
+                                <input type="text" class="form-control" placeholder="--- Enter Branch ---" id="branch"
+                                    required>
+                            </div>
+
                         </div>
                         <div class="col-6 mb-2">
-                            <label for="degreeStatus" class="form-label">Status *</label>
-                            <select class="form-select form-select-md" aria-label=".form-select-md example"
-                                id="degreeStatus" required>
-                                <option selected>--- Select Status ---</option>
-                                <option value="1">Pursuing</option>
-                                <option value="2">Completed</option>
-                            </select>
+                            <div> <label for="semester" class="form-label">Semester *</label>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    id="semester" required>
+                                    <option selected>--- Select Semester ---</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">3</option>
+                                    <option value="2">4</option>
+                                    <option value="2">5</option>
+                                    <option value="2">6</option>
+                                    <option value="2">7</option>
+                                    <option value="2">8</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="degreeStatus" class="form-label">Status *</label>
+                                <select class="form-select form-select-md" aria-label=".form-select-md example"
+                                    id="degreeStatus" required>
+                                    <option selected>--- Select Status ---</option>
+                                    <option value="1">Pursuing</option>
+                                    <option value="2">Completed</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-6 mb-2">
+                        <div class="col-12 mb-2">
                             <label for="university" class="form-label">University/School/College *</label>
                             <input type="text" class="form-control" placeholder="Enter University or College or School"
                                 id="university" required>
@@ -191,7 +215,7 @@
                                 id="year" required>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="cgpa" class="form-label">CGPA</label>
+                            <label for="cgpa" class="form-label">--- Enter CGPA out of 10 ---</label>
                             <input type="tel" class="form-control" maxlength="4" max="10" placeholder="Add your CGPA"
                                 id="cgpa">
                         </div>
@@ -278,22 +302,22 @@
                 </div>
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <label for="tool" class="form-label">Tools / Technology *</label><br>
-                        <input type="text" class="form-control" placeholder="Ex. JavaScript" id="tool">
+                        <label for="tools" class="form-label">Tools / Technology *</label><br>
+                        <input type="text" class="form-control" placeholder="Ex. JavaScript" id="tools">
                     </div>
                     <div class="col-6 mb-2">
-                        <label for="tool" class="form-label">Interpersonal Skill *</label><br>
+                        <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
                         <input type="text" class="form-control" placeholder="Ex. Communication" id="interpersonal">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <label for="tool" class="form-label">Percentage-tech *</label><br>
-                        <input type="text" class="form-control" placeholder="Ex. 89" id="tool">
+                        <label for="persentage_tech" class="form-label">Percentage-tech *</label><br>
+                        <input type="text" class="form-control" placeholder="Ex. 89" id="persentage_tech">
                     </div>
                     <div class="col-6 mb-2">
-                        <label for="tool" class="form-label">Percentage-inter *</label><br>
-                        <input type="text" class="form-control" placeholder="Ex. 89" id="interpersonal">
+                        <label for="persentage_inter" class="form-label">Percentage-inter *</label><br>
+                        <input type="text" class="form-control" placeholder="Ex. 89" id="persentage_inter">
                     </div>
                 </div>
                 <div class="col-12 mb-2 save_btn">
@@ -341,7 +365,7 @@
                     </select>
                 </div>
                 <div class="col-12 mb-2 save_btn">
-                    <button type="submit" class="btn btn-primary mt-3 submit" id="submi_project">Save
+                    <button type="submit" class="btn btn-primary mt-3 submit" id="submit_project">Save
                         Details</button>
                     <button class=" btn text-primary mt-4 " id="plus_icon"><i class="fa-solid fa-plus"></i></button>
                 </div>
