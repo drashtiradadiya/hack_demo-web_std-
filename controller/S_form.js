@@ -2,6 +2,13 @@ const Student_signup = require("../models/student.js");
 const { MongoClient, ObjectId } = require("mongodb");
 const fs = require("fs");
 const path = require("path");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dagff8fw5",
+  api_key: "741714121227712",
+  api_secret: "mAmOcMCAzh0oWPL5g_deCKfLtt8",
+});
 
 // Database Name
 const uri = "mongodb://localhost:27017";
@@ -24,6 +31,9 @@ async function handlerS_Form(req, res) {
 }
 
 async function handlerS_FormInsertData(req, res) {
+  console.log("hey!");
+  const enrollment_No = req.query.enrollment_No;
+  console.log(enrollment_No);
   try {
     const {
       first_Name,
@@ -42,12 +52,14 @@ async function handlerS_FormInsertData(req, res) {
       Completionyear,
       cgpa,
       percentage,
+      percentage_tech,
+      percentage_inter,
       companyName,
       experienceCompany,
       jobType,
       startDate,
       endDate,
-      tool,
+      tools,
       interpersonal,
       projectName,
       projectDes,
@@ -75,6 +87,7 @@ async function handlerS_FormInsertData(req, res) {
 
     // Define the new data to update
     const newData = {
+      profilePic: result1.url,
       first_Name,
       last_Name,
       email,
@@ -91,22 +104,24 @@ async function handlerS_FormInsertData(req, res) {
       Completionyear,
       cgpa,
       percentage,
+      percentage_tech,
+      percentage_inter,
       companyName,
       experienceCompany,
       jobType,
       startDate,
       endDate,
-      tool,
+      tools,
       interpersonal,
       projectName,
       projectDes,
-      //projectTool,
+      projectTool,
       semester,
       branch,
     };
 
     // Update the document with the new data
-    const result = await collection.updateOne(
+    const result = collection.updateOne(
       { _id: ObjectId.isValid(user.id) ? new ObjectId(user.id) : null }, // Filter for the document to update
       { $set: newData } // New data to add using $set operator
     );
@@ -162,9 +177,13 @@ async function handlerForUploadFile(req, res) {
     res.status(500).json({ message: "Internal Server Error", error });
   }
 }
+async function handlerUploadProfilePic(req, res) {
+  console.log("hiii");
+}
 
 module.exports = {
   handlerS_FormInsertData,
   handlerS_Form,
   handlerForUploadFile,
+  handlerUploadProfilePic,
 };

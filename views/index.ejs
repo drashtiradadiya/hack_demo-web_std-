@@ -32,6 +32,7 @@
         crossorigin="anonymous"></script>
     <link href="/css/style.css" rel="stylesheet">
     <!-- <script src="./passVarible.js"></script> -->
+    <script src="/js/patch_index.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51" style="background-color:#ffffff;">
@@ -57,7 +58,8 @@
                 <!-- <a href="#contact" class="nav-item nav-link">Contact</a> -->
 
             </div>
-            <a href="http://localhost:8001/S_Form?enrollment_No=<%= user.enrollment_No %>" class="btn btn-menu d-none d-lg-block"
+            <a href="http://localhost:8001/S_Form?enrollment_No=<%= user.enrollment_No %>"
+                class="btn btn-menu d-none d-lg-block"
                 style="background-color:#001524; color: #ffffff; border: none;">Create Portfolio
             </a>
         </div>
@@ -117,7 +119,8 @@
                         lorem diam dolor justo et dolor dolor dolor</p>
                     <div class="row mb-3">
                         <div class="col-sm-6 py-2" id="nameofStudent">
-                            <h6>Name: <%= user.first_Name %> <%= user.last_Name %><span class="text-secondary"></span></h6>
+                            <h6>Name: <%= user.first_Name %>
+                                    <%= user.last_Name %><span class="text-secondary"></span></h6>
                         </div>
                         <div class="col-sm-6 py-2" id="date_of_birth">
                             <h6>Birthday: <%= user.date_of_birth %> <span class="text-secondary"></span></h6>
@@ -161,7 +164,8 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                        <form>
+                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('about')"
+                            id="about">
                             <div class="col-6">
                                 <label for="fname" class="form-label ">First Name:</label>
                                 <input type="text" class="form-control" placeholder="First name" aria-label="First name"
@@ -199,7 +203,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="submit_about">Update</button>
                 </div>
 
             </div>
@@ -379,30 +383,36 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-
-                        <div class="col-6 rounded">
-                            <label for="skill" class="form-label ">Tools or Technological Skill*</label>
-                            <input type="text" class="form-control" placeholder="Ex. JavaScript" id="skill">
-                        </div>
-                        <div class="col-6 rounded">
-                            <label for="skill" class="form-label ">Interpersonal Skill*</label>
-                            <input type="text" class="form-control" placeholder="Ex. Communication" id="skill">
-                        </div>
-                        <div class="col-6 rounded">
-                            <label for="percentage" class="form-label ">Percentage-tech*</label>
-                            <input type="number" max="100" class="form-control" placeholder="Ex. 89" id="percentage">
-                        </div>
-                        <div class="col-6 rounded">
-                            <label for="percentage" class="form-label ">Percentage-inter*</label>
-                            <input type="number" max="100" class="form-control" placeholder="Ex. 89" id="percentage">
-                        </div>
+                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Skill')"
+                            id="Skill">
+                            <div class="col-6 rounded">
+                                <label for="skill" class="form-label ">Tools or Technological Skill*</label>
+                                <input type="text" class="form-control" placeholder="Ex. JavaScript" id="tool">
+                            </div>
+                            <div class="col-6 rounded">
+                                <label for="skill" class="form-label ">Interpersonal Skill*</label>
+                                <input type="text" class="form-control" placeholder="Ex. Communication"
+                                    id="interpersonal">
+                            </div>
+                            <div class="col-6 rounded">
+                                <label for="percentage" class="form-label ">Percentage-tech*</label>
+                                <input type="number" max="100" class="form-control" placeholder="Ex. 89"
+                                    id="percentage_tech">
+                            </div>
+                            <div class="col-6 rounded">
+                                <label for="percentage" class="form-label ">Percentage-inter*</label>
+                                <input type="number" max="100" class="form-control" placeholder="Ex. 89"
+                                    id="percentage_inter">
+                            </div>
+                        </form>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-primary">Save</button>
                 </div>
+
 
             </div>
         </div>
@@ -519,33 +529,36 @@
                 </div>
                 <div class="modal-body px-3">
                     <div class="row g-3" style="color:black;">
-                        <div class="col-12 rounded">
-                            <label for="companyname" class="form-label ">Company Name*</label>
-                            <input type="text" class="form-control" placeholder="Company Name" id="company">
-                        </div>
-                        <div class="col-6 rounded mt-3">
-                            <label for="percentage" class="form-label ">Starting Year</label>
-                            <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
-                                id="startingyear">
-                        </div>
-                        <div class="col-6 rounded mt-3">
-                            <label for="percentage" class="form-label ">Ending Year</label>
-                            <input type="number" min="1000" class="form-control" placeholder="Ex.2000" id="endingyear">
-                        </div>
-                        <div class="col-6 rounded mt-3">
-                            <label for="skill" class="form-label ">Job type</label>
-                            <input type="text" class="form-control" placeholder="Ex.Webdevloper" id="jobtype">
-                        </div>
-                        <div class="col-6 rounded mt-3">
-                            <label for="experience" class="form-label ">Experience(in year)</label>
-                            <input type="text" class="form-control" placeholder="Ex.2002" id="experience">
-                        </div>
+                        <form action="localhost:8001/" method="patch" onsubmit="return validateUpdateForm('Experience')"
+                            id="Experience">
+                            <div class="col-12 rounded">
+                                <label for="companyname" class="form-label ">Company Name*</label>
+                                <input type="text" class="form-control" placeholder="Company Name" id="company">
+                            </div>
+                            <div class="col-6 rounded mt-3">
+                                <label for="percentage" class="form-label ">Starting Year</label>
+                                <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
+                                    id="startDate">
+                            </div>
+                            <div class="col-6 rounded mt-3">
+                                <label for="percentage" class="form-label ">Ending Year</label>
+                                <input type="number" min="1000" class="form-control" placeholder="Ex.2000" id="endDate">
+                            </div>
+                            <div class="col-6 rounded mt-3">
+                                <label for="skill" class="form-label ">Job type</label>
+                                <input type="text" class="form-control" placeholder="Ex.Webdevloper" id="jobType">
+                            </div>
+                            <div class="col-6 rounded mt-3">
+                                <label for="experience" class="form-label ">Experience(in year)</label>
+                                <input type="text" class="form-control" placeholder="Ex.2002" id="experienceCompany">
+                            </div>
+                        </form>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="submit_exp">Update</button>
                 </div>
 
             </div>
@@ -563,34 +576,23 @@
                     <div class="container">
                         <div class="  row " style="color:black;">
                             <div class="col-12 rounded  ">
-                                <label for="university/college/school" class="form-label ">University/College/School
-                                    *</label>
+                                <label for="university/college/school"
+                                    class="form-label ">University/College/School</label>
                                 <input type="text" class="form-control" placeholder="University/college/school"
                                     id="university/college/school">
                             </div>
 
                             <div class="col-6 rounded mt-3">
-                                <label for="completion year" class="form-label ">Completion Year *</label>
+                                <label for="completion year" class="form-label ">Completion Year </label>
                                 <input type="number" min="1000" class="form-control" placeholder="Ex.2000"
                                     id="completionyear">
                             </div>
                             <div class="col-6 rounded mt-3">
-                                <label for="cgpa" class="form-label ">CGPA *</label>
+                                <label for="cgpa" class="form-label ">CGPA</label>
                                 <input type="tel" max="10" class="form-control" placeholder="Enter CGPA out of 10"
                                     id="cgpa">
                             </div>
-                            <div class="col-6 mt-3">
-                                <label for="degreeName" class="form-label">Degree *</label>
-                                <input type="text" class="form-control" placeholder="--- Enter Degree ---"
-                                    id="degreeName" required>
-                            </div>
-                            <div class="col-6 mt-3">
-
-                                <label for="branch" class="form-label">Branch *</label>
-                                <input type="text" class="form-control" placeholder="--- Enter Branch ---" id="branch"
-                                    required>
-                            </div>
-                            <div class="col-6 mt-3">
+                            <div class="col-6 row mt-3 ms-1">
                                 <label for="status" class="form-label">Status*</label>
                                 <select id="status" class="form-select form-select-md col-12"
                                     aria-label=".form-select-md example"
@@ -600,29 +602,13 @@
                                     <option>Completed</option>
                                 </select>
                             </div>
-                            <div class="col-6 mt-3">
-                                <label for="semester" class="form-label">Semester *</label>
-                                <select id="semester" class="form-select form-select-md col-12"
-                                    aria-label=".form-select-md example" style="height:35px;border:1px solid lightgray;"
-                                    required>
-                                    <option selected>--- Select Semester ---</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="2">3</option>
-                                    <option value="2">4</option>
-                                    <option value="2">5</option>
-                                    <option value="2">6</option>
-                                    <option value="2">7</option>
-                                    <option value="2">8</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="submit_Edu">Update</button>
                 </div>
 
             </div>
@@ -723,23 +709,26 @@
                 <div class="modal-body px-3">
                     <div class="container">
                         <div class="  row " style="color:black;">
-                            <div class="col-12 rounded  ">
-                                <label for="certificate" class="form-label ">Certificate</label>
-                                <input type="file" class="form-control" placeholder="Certificate uplode"
-                                    id="certificate">
-                            </div>
+                            <form action="localhost:8001/" method="patch"
+                                onsubmit="return validateUpdateForm('Achievement')" id="Achievement">
+                                <div class="col-12 rounded  ">
+                                    <label for="certificate" class="form-label ">Certificate</label>
+                                    <input type="file" class="form-control" placeholder="Certificate uplode"
+                                        id="certificate">
+                                </div>
 
-                            <div class="col-6 rounded mt-3">
-                                <label for="domain" class="form-label ">Domain</label>
-                                <input type="Text" class="form-control" placeholder="Enter your Domain" id="domain">
-                            </div>
+                                <div class="col-6 rounded mt-3">
+                                    <label for="domain" class="form-label ">Domain</label>
+                                    <input type="Text" class="form-control" placeholder="Enter your Domain" id="domain">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" id="submit_Achievement">Update</button>
                 </div>
 
             </div>

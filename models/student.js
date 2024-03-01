@@ -111,9 +111,6 @@ const studentSchema = new mongoose.Schema(
     endDate: {
       type: Number,
     },
-    tool: {
-      type: String,
-    },
     interpersonal: {
       type: String,
     },
@@ -123,16 +120,26 @@ const studentSchema = new mongoose.Schema(
     projectDes: {
       type: String,
     },
-    // projectTool: {
-    //   type: [String], // Assuming projectTool is an array of strings
-    //   default: [],
-    //   // name: String,
-    //   // selectedOptions: [String],
-    // },
+    projectTool: {
+      // type: [String], // Assuming projectTool is an array of strings
+      // default: [],
+      type: String,
+      // name: String,
+      // selectedOptions: [String],
+    },
     semester: {
       type: Number,
     },
     branch: {
+      type: String,
+    },
+    percentage_inter: {
+      type: Number,
+    },
+    percentage_tech: {
+      type: Number,
+    },
+    tools: {
       type: String,
     },
   },

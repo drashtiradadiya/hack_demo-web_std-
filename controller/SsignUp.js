@@ -39,7 +39,6 @@ const handlerStudentDataFromSignUp = async (req, res) => {
   return res.status(200).json({ msg: "OK" });
 };
 module.exports = {
-  handlerIndex,
   handlerStudentDataFromSignUp,
   handlerStudentpageSignUp,
 };
