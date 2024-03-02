@@ -41,22 +41,7 @@ const studentSchema = new mongoose.Schema(
         message: "Password and Confirm password does not match.",
       },
     },
-    IpAddress: {
-      type: String,
-      required: true,
-    },
-    ProjectOriginalName: {
-      type: String,
-    },
-    Projectpath: {
-      type: String,
-    },
-    ProjectmimeType: {
-      type: String,
-    },
-    data: {
-      type: Buffer,
-    },
+
     date_of_birth: {
       type: Number,
     },
@@ -66,7 +51,17 @@ const studentSchema = new mongoose.Schema(
     address: {
       type: String,
     },
-    city: {
+
+
+    ProjectOriginalName: {
+      type: String,
+    },
+    Projectpath: {
+      type: String,
+    },
+    ProjectmimeType: {
+      type: String,
+    }, city: {
       type: String,
     },
     state: {
@@ -75,13 +70,21 @@ const studentSchema = new mongoose.Schema(
     zip: {
       type: Number,
     },
-    experience: {
-      type: Number,
+    IpAddress: {
+      type: String,
+      required: true,
     },
-    degreeStatus: {
+
+    degreeName: {
       type: String,
     },
-    degreeName: {
+    semester: {
+      type: Number,
+    },
+    branch: {
+      type: String,
+    },
+    degreeStatus: {
       type: String,
     },
     university: {
@@ -96,14 +99,19 @@ const studentSchema = new mongoose.Schema(
     percentage: {
       type: Number,
     },
+
+
+    jobType: {
+      type: String,
+    },
+    experience: {
+      type: Number,
+    },
     companyName: {
       type: String,
     },
     experienceCompany: {
       type: Number,
-    },
-    jobType: {
-      type: String,
     },
     startDate: {
       type: Number,
@@ -111,36 +119,31 @@ const studentSchema = new mongoose.Schema(
     endDate: {
       type: Number,
     },
+
     interpersonal: {
       type: String,
     },
+    tools: {
+      type: String,
+    },
+
     projectName: {
       type: String,
     },
     projectDes: {
       type: String,
     },
-    projectTool: {
-      // type: [String], // Assuming projectTool is an array of strings
-      // default: [],
-      type: String,
-      // name: String,
-      // selectedOptions: [String],
-    },
-    semester: {
-      type: Number,
-    },
-    branch: {
-      type: String,
-    },
+    projectTool: [
+
+    ],
+    data: {
+      type: Buffer,
+  },
     percentage_inter: {
       type: Number,
     },
     percentage_tech: {
       type: Number,
-    },
-    tools: {
-      type: String,
     },
   },
   { timestamps: true }

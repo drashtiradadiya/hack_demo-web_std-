@@ -303,7 +303,7 @@
                 <div class="row">
                     <div class="col-6 mb-2">
                         <label for="tools" class="form-label">Tools / Technology *</label><br>
-                        <input type="text" class="form-control" placeholder="Ex. JavaScript" id="tools">
+                        <input type="text" class="form-control" placeholder="Ex. JavaScript,c++,c##" id="tools">
                     </div>
                     <div class="col-6 mb-2">
                         <label for="interpersonal" class="form-label">Interpersonal Skill *</label><br>
@@ -468,20 +468,26 @@
                 city: document.getElementById('city').value,
                 state: document.getElementById('state').value,
                 zip: document.getElementById('zip').value,
-                experience: document.getElementById('experience').value,
+                jobType: document.getElementById('jobType').value,
+
                 degreeName: document.getElementById('degreeName').value,
-                degreeStatus: document.getElementById('degreeStatus').value,
+                semester: document.getElementById('semester').value,
                 university: document.getElementById('university').value,
+                branch: document.getElementById("branch").value,
+                degreeStatus: document.getElementById('degreeStatus').value,
                 Completionyear: document.getElementById('year').value,
                 cgpa: document.getElementById('cgpa').value,
                 percentage: document.getElementById('percentage').value,
+
                 companyName: document.getElementById('companyName').value,
                 experienceCompany: document.getElementById('experienceCompany').value,
                 jobType: document.getElementById('jobType').value,
                 startDate: document.getElementById('startDate').value,
                 endDate: document.getElementById('endDate').value,
-                tool: document.getElementById('tool').value,
+
+                tool: document.getElementById('tools').value,
                 interpersonal: document.getElementById('interpersonal').value,
+                
                 projectName: document.getElementById('projectName').value,
                 projectDes: document.getElementById('projectDes').value,
                 projectTool: document.getElementById('projectTool').value,
@@ -510,7 +516,7 @@
                 })
                 .then(data => {
                     console.log('Server response:', data);
-                    
+                    toolsInput.value = '';
 
                     // Handle successful response from the server
                 })
@@ -536,10 +542,10 @@
             $('#submit_achievment').click(function () {
                 validateForm('achievment');
             });
-            $('#submi_project').click(function () {
+            $('#submit_project').click(function () {
                 validateForm('project');
             });
-            $('#submi_skill').click(function () {
+            $('#submit_skill').click(function () {
                 validateForm('skill');
             });
             $('#wizard_picture').click(function (event) {
