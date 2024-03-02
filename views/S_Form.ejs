@@ -458,6 +458,8 @@
         }
 
         function validateForm(section) {
+            const projectToolArray=document.getElementById('projectTool').value;
+               const valueArray=projectToolArray.split(',');
             const formData = {
                 first_Name: document.getElementById('fname').value,
                 last_Name: document.getElementById('lname').value,
@@ -468,7 +470,7 @@
                 city: document.getElementById('city').value,
                 state: document.getElementById('state').value,
                 zip: document.getElementById('zip').value,
-                experience: document.getElementById('experience').value,
+                // experience: document.getElementById('experience').value,
                 degreeName: document.getElementById('degreeName').value,
                 degreeStatus: document.getElementById('degreeStatus').value,
                 university: document.getElementById('university').value,
@@ -484,9 +486,7 @@
                 interpersonal: document.getElementById('interpersonal').value,
                 projectName: document.getElementById('projectName').value,
                 projectDes: document.getElementById('projectDes').value,
-                projectTool: document.getElementById('projectTool').value,
-            
-                
+                projectTool:valueArray,
             }
                 const enrollment_No = localStorage.getItem('enrollmentNo');
                 console.log(enrollment_No);
