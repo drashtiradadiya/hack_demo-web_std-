@@ -58,7 +58,7 @@ async function handlerS_FormInsertData(req, res) {
     } = req.body;
     // Find the user by email
     const user = await Student_signup.findOne({enrollment_No});
-
+        console.log(user);
     if (!user) {
       return res.status(404).send("User not found");
     }
@@ -102,7 +102,7 @@ async function handlerS_FormInsertData(req, res) {
       { $set: newData } // New data to add using $set operator
     );
 
-
+    console.log(result);
     console.log(`${result.modifiedCount} document(s) updated`);
     res.send("Data updated successfully");
   }
@@ -117,7 +117,6 @@ async function handlerS_FormInsertData(req, res) {
 // window.localStorage.
 async function handlerForUploadFile(req, res) {
   const enrollment_No = req.body.enrollmentNo;
-  console.log(enrollment_No);
   const file = req.file;
   try {
     // Find the user by email

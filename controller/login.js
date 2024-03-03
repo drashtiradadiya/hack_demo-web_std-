@@ -1,6 +1,5 @@
 const Student_signup = require("../models/student.js");
 const popup = require('node-popup');
-// import{alert} from 'node-popup';
 const ejs = require('ejs');
 
 // const crypto = require('crypto');
