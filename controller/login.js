@@ -4,14 +4,15 @@ const popup = require('node-popup');
 const ejs = require('ejs');
 
 // const crypto = require('crypto');
-function handlerStudentpageLogin(req, res) {
+ function handlerStudentpageLogin(req, res) {
     return res.render("S_Login");
 }
 
 const handlerStudentDataFromLogin = async(req,res) => {
     try {
         const {email, enrollment_No, password} = req.body;
-       const user = await Student_signup.findOne({ enrollment_No});
+       const user = await Student_signup.findOne({ enrollment_No, email, password});
+
         if(!user) {
             return res.status(401).json(
                 {message: 'User not find'}

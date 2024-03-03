@@ -1,6 +1,7 @@
 const Student_signup = require("../models/student.js");
 const express = require("express");
-const ejs = require("ejs");
+// const ejs = require("ejs");
+const bcrypt = require=('bcrypt')
 
 function handlerStudentpageSignUp(req, res) {
   return res.render("S_Sign_up");
@@ -26,7 +27,9 @@ const handlerStudentDataFromSignUp = async (req, res) => {
     email,
     enrollment_No,
   } = await req.body;
+
   const ip = req.ip;
+
   await Student_signup.create({
     first_Name,
     last_Name,
@@ -36,6 +39,7 @@ const handlerStudentDataFromSignUp = async (req, res) => {
     email,
     IpAddress: ip,
   });
+
   return res.status(200).json({ msg: "OK" });
 };
 module.exports = {

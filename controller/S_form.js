@@ -51,6 +51,8 @@ async function handlerS_FormInsertData(req, res) {
       interpersonal,
       projectName,
       projectDes,
+      semester,
+      branch,
       projectTool,
       
     } = req.body;
