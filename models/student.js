@@ -126,19 +126,22 @@ const studentSchema = new mongoose.Schema(
     tools: {
       type: String,
     },
-
-    projectName: {
-      type: String,
-    },
-    projectDes: {
-      type: String,
-    },
-    projectTool: [
-
+    project: [
+      {
+        projectName: {
+          type: String,
+        },
+        projectDes: {
+          type: String,
+        },
+        projectTool: [
+          
+        ]
+      }
     ],
     data: {
       type: Buffer,
-  },
+    },
     percentage_inter: {
       type: Number,
     },
